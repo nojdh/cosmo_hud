@@ -10,6 +10,8 @@ Edit config.lua to your liking.
 
 Do not change the name or it will not work.
 
+Added Stress System (FishyDEV)
+and made it more nopixel inspired
 ## Requirements
 
 esx_status

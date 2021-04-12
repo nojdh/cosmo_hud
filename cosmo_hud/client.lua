@@ -76,11 +76,14 @@ Citizen.CreateThread(function()
                      function(status) hunger = status.val / 10000 end)
         TriggerEvent('esx_status:getStatus', 'thirst',
                      function(status) thirst = status.val / 10000 end)
+        TriggerEvent('esx_status:getStatus', 'stress',
+                     function(status) stress = status.val / 10000 end)
         SendNUIMessage({
             hp = GetEntityHealth(PlayerPedId()) - 100,
             armor = GetPedArmour(PlayerPedId()),
             hunger = hunger,
             thirst = thirst,
+            stress = stress,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10
         })
         if IsPauseMenuActive() then

@@ -3,6 +3,8 @@ $(document).ready(function () {
   HPCircleIcon = document.querySelector("#HealthIndicator path.baseline");
   ArmorCircle = new ldBar("#ArmorIndicator");
   ArmorCircleDiv = document.getElementById("ArmorIndicator");
+  StressCircle = new ldBar("#StressIndicator");
+  StressCircleDiv = document.getElementById("StressIndicator");
   HungerCircle = new ldBar("#HungerIndicator");
   HungerCircleIcon = document.getElementsByClassName("fa-hamburger");
   ThirstCircle = new ldBar("#ThirstIndicator");
@@ -18,6 +20,7 @@ window.addEventListener("message", function (event) {
   ArmorCircle.set(data.armor);
   HungerCircle.set(data.hunger);
   ThirstCircle.set(data.thirst);
+  StressCircle.set(data.stress);
   OxygenCircle.set(data.oxygen);
   
   // Change color and icon if HP is 0 (dead)
@@ -39,7 +42,12 @@ window.addEventListener("message", function (event) {
   } else if (data.armor > 0) {
     ArmorCircleDiv.style.display = "block";
   }
-
+  
+  if (data.stress == 0) {
+    StressCircleDiv.style.display = "none";
+  } else if (data.armor > 0) {
+    StressCircleDiv.style.display = "block";
+  }
   // Flash if hunger is low
   if (data.hunger < 25) {
     $(HungerCircleIcon).toggleClass("flash");

@@ -63,6 +63,15 @@ body {
   bottom: 1.2vh;
 }
 
+
+.fa-brain {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.1vh;
+  bottom: 1.2vh;
+}
+
 #HealthIndicator path.mainline {
   stroke: rgb(0, 209, 105);
   stroke-width: 10;
@@ -71,7 +80,7 @@ body {
 #HealthIndicator path.baseline {
   stroke-width: 10;
   stroke: rgb(0, 143, 71);
-  fill: rgb(0, 143, 71);
+  fill: rgb(31, 32, 32);
 }
 
 #ArmorIndicator path.mainline {
@@ -82,7 +91,7 @@ body {
 #ArmorIndicator path.baseline {
   stroke-width: 10;
   stroke: rgb(124, 30, 30);
-  fill: rgb(124, 30, 30);
+  fill: rgb(31, 32, 32);
 }
 
 #HungerIndicator path.mainline {
@@ -93,7 +102,7 @@ body {
 #HungerIndicator path.baseline {
   stroke-width: 10;
   stroke: rgb(156, 107, 0);
-  fill: rgb(156, 107, 0);
+  fill: rgb(31, 32, 32);
 }
 
 #ThirstIndicator path.mainline {
@@ -104,7 +113,18 @@ body {
 #ThirstIndicator path.baseline {
   stroke-width: 10;
   stroke: rgb(0, 99, 156);
-  fill: rgb(0, 99, 156);
+  fill: rgb(31, 32, 32);
+}
+
+#ThirstIndicator path.mainline {
+  stroke: rgb(185, 30, 30);
+  stroke-width: 10;
+}
+
+#StressIndicator path.baseline {
+  stroke-width: 10;
+  stroke: rgb(124, 30, 30);
+  fill: rgb(31, 32, 32);
 }
 
 #OxygenIndicator path.mainline {
@@ -115,7 +135,7 @@ body {
 #OxygenIndicator path.baseline {
   stroke-width: 10;
   stroke: rgb(0, 99, 156);
-  fill: rgb(0, 99, 156);
+  fill: rgb(31, 32, 32);
 }
 
 .flash {
