@@ -45,7 +45,7 @@ window.addEventListener("message", function (event) {
   
   if (data.stress == 0) {
     StressCircleDiv.style.display = "none";
-  } else if (data.armor > 0) {
+  } else if (data.stress > 0) {
     StressCircleDiv.style.display = "block";
   }
   // Flash if hunger is low
