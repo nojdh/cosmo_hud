@@ -9,6 +9,19 @@ Citizen.CreateThread(function()
     end
 end)
 
+local tokoState = 1
+local isTalking = false
+
+RegisterNetEvent('cosmo-hud:tokoState')
+AddEventHandler('cosmo-hud:tokoState', function(state)
+    tokoState = state
+end)
+
+RegisterNetEvent('cosmo-hud:tokoTalking')
+AddEventHandler('cosmo-hud:tokoTalking', function(talking)
+    isTalking = talking
+end)
+
 loadedconfig = false
 Citizen.CreateThread(function()
     while loadedconfig == false do
@@ -85,7 +98,9 @@ Citizen.CreateThread(function()
             hunger = hunger,
             thirst = thirst,
             stress = stress,
-            oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10
+            oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
+            state = tokoState,
+            talking = isTalking,
         })
 
         if IsPauseMenuActive() then
