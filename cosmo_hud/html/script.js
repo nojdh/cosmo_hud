@@ -1,4 +1,13 @@
 $(document).ready(function () {
+    VoiceIndicator = new ProgressBar.Circle("#VoiceIndicator", {
+    color: "rgb(255, 255, 255)",
+    trailColor: "rgba(255, 255, 255, 0.459)",
+    strokeWidth: 10,
+    trailWidth: 10,
+    duration: 250,
+    easing: "easeInOut",
+  });
+  
   HealthIndicator = new ProgressBar.Circle("#HealthIndicator", {
     color: "rgb(0, 182, 91)",
     trailColor: "green",
@@ -89,6 +98,20 @@ window.addEventListener("message", function (event) {
     $("#StressIndicator").fadeOut();
   } else if (data.stress > 0) {
     $("#StressIndicator").fadeIn();
+  }
+  
+  if (data.state == 1) {
+    VoiceIndicator.animate(0.35)
+  } else if (data.state == 2) {
+    VoiceIndicator.animate(0.60)
+  } else if (data.state == 3) {
+    VoiceIndicator.animate(1.0)
+  }
+
+  if (data.talking == true) {
+    VoiceIndicator.path.setAttribute('stroke', "yellow");
+  } else {
+    VoiceIndicator.path.setAttribute('stroke', "rgb(255, 255, 255)");
   }
 
   // Change color and icon if HP is 0 (dead)
