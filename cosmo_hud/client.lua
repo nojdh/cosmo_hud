@@ -129,7 +129,7 @@ CreateThread(function()
         Wait(2000)
         SetRadarZoom(1150)
         if Config.AlwaysShowRadar == false then
-            if IsPedInAnyVehicle(PlayerPedId(), false) then
+            if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
                 DisplayRadar(true)
             else
                 DisplayRadar(false)
