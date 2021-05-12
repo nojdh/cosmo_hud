@@ -129,7 +129,7 @@ CreateThread(function()
         Wait(2000)
         SetRadarZoom(1150)
         if Config.AlwaysShowRadar == false then
-            if IsPedInAnyVehicle(PlayerPedId(-1), false) then
+            if IsPedInAnyVehicle(PlayerPedId(), false) then
                 DisplayRadar(true)
             else
                 DisplayRadar(false)
@@ -148,7 +148,7 @@ CreateThread(function()
         if Config.ShowFuel == true then
             if isDriving and IsPedInAnyVehicle(PlayerPedId(), true) then
                 local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
-                local fuellevel = GetVehicleFuelLevel(veh)
+                local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
                 SendNUIMessage({
                     action = "update_fuel",
                     fuel = fuellevel,
