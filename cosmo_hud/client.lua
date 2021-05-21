@@ -22,7 +22,7 @@ Citizen.CreateThread(function()
             local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
             local speed = math.floor(GetEntitySpeed(veh) * SpeedMultiplier)
             local vehhash = GetEntityModel(veh)
-            local maxspeed = GetVehicleModelMaxSpeed(vehhash) * 3.6
+            local maxspeed = (GetVehicleModelMaxSpeed(vehhash) * SpeedMultiplier)
             SendNUIMessage({speed = speed, maxspeed = maxspeed})
         end
     end
@@ -148,7 +148,7 @@ CreateThread(function()
         if Config.ShowFuel == true then
             if isDriving and IsPedInAnyVehicle(PlayerPedId(), true) then
                 local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
-                local fuellevel = GetVehicleFuelLevel(veh)
+                local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
                 SendNUIMessage({
                     action = "update_fuel",
                     fuel = fuellevel,

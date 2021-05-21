@@ -192,15 +192,12 @@ window.addEventListener("message", function (event) {
   }
 
   if (data.action == "update_fuel") {
-    let finalfuel = (data.fuel / 100) * 1.5385;
-    if (finalfuel > 0.9) {
-      FuelIndicator.animate(1.0);
-    } else if (finalfuel < 0.9) {
-      FuelIndicator.animate(finalfuel);
+    let finalfuel = (data.fuel / 100);
+    FuelIndicator.animate(finalfuel);
     }
-    if (finalfuel < 0.2) {
+    if (finalfuel < 0.20) {
       FuelIndicator.path.setAttribute("stroke", "red");
-    } else if (finalfuel > 0.2) {
+    } else if (finalfuel > 0.20) {
       FuelIndicator.path.setAttribute("stroke", "white");
     }
   }
