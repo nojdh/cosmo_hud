@@ -22,7 +22,7 @@ Citizen.CreateThread(function()
             local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
             local speed = math.floor(GetEntitySpeed(veh) * SpeedMultiplier)
             local vehhash = GetEntityModel(veh)
-            local maxspeed = GetVehicleModelMaxSpeed(vehhash) * SpeedMultiplier)
+            local maxspeed = (GetVehicleModelMaxSpeed(vehhash) * SpeedMultiplier)
             SendNUIMessage({speed = speed, maxspeed = maxspeed})
         end
     end
