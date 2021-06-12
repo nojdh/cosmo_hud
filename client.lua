@@ -89,13 +89,10 @@ AddEventHandler('esx_status:onTick', function(data)
 	end
 
 	local hunger, thirst, stress
-	for i=1, #data do
-		if not hunger and next(data[i]).name == hunger then
-			hunger = data[i].percent
-		elseif not thirst and next(data[i]).name == thirst then
-			thirst = data[i].percent
-		elseif not stress and Config.ShowStress and next(data[i]).name == stress then
-			stress = data[i].percent
+	for k, v in pairs(data) do
+		if v.name == 'hunger' then hunger = v.percent
+		elseif v.name == 'thirst' then thirst = v.percent
+		elseif v.name == 'stress' then stress = v.percent
 		end
 	end
 
