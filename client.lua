@@ -134,6 +134,7 @@ Citizen.CreateThread(function()
 	SetMinimapComponentPosition('minimap', 'L', 'B', x, y, w, h)
 	SetMinimapComponentPosition('minimap_mask', 'L', 'B', x + 0.17, y + 0.09, 0.072, 0.162)
 	SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.035, -0.03, 0.18, 0.22)
+	ThefeedSpsExtendWidescreenOn()
 	if ESX.IsPlayerLoaded() then
 		hasSpawned = true
 		ToggleRadar(Config.AlwaysShowRadar)
