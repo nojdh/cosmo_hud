@@ -141,6 +141,8 @@ Citizen.CreateThread(function()
 		ToggleRadar(Config.AlwaysShowRadar)
 		SendNUIMessage({showUi = true})
 	end
+	SendNUIMessage({action = "update_hud", talking = false })
+	SendNUIMessage({action = "voice_level", voicelevel = LocalPlayer.state.proximity.index})
 end)
 
 Citizen.CreateThread(function()
@@ -172,18 +174,18 @@ Citizen.CreateThread(function()
 		end
 
 		if Config.ShowFuel == true then
-            if inVehicle and IsPedInAnyVehicle(PlayerPedId(), true) then
-                local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
-                local fuellevel = GetVehicleFuelLevel(veh)
-                SendNUIMessage({
-                    action = "update_fuel",
-                    fuel = fuellevel,
-                    showFuel = true
-                })
-            end
-        elseif Config.ShowFuel == false then
-            SendNUIMessage({showFuel = false})
-        end
+			if inVehicle and IsPedInAnyVehicle(PlayerPedId(), true) then
+			local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
+			local fuellevel = GetVehicleFuelLevel(veh)
+			SendNUIMessage({
+				action = "update_fuel",
+				fuel = fuellevel,
+				showFuel = true
+			})
+			end
+		elseif Config.ShowFuel == false then
+				SendNUIMessage({showFuel = false})
+		end
 	end
 end)
 
