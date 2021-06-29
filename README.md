@@ -27,12 +27,12 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 3. Add `ensure cosmo_hud` to your server.cfg
 4. To make sure that `cosmo_hud` works with `esx_status`, you have to change the following line in `[esx]/esx_status/client/main.lua`:
 ```
-        92          TriggerEvent('esx_status:onTick', data)
+92          TriggerEvent('esx_status:onTick', data)
 
-        to
+to
 
-        92          --TriggerEvent('esx_status:onTick', data)
-        93          TriggerEvent('cosmo_hud:onTick', data)
+92          --TriggerEvent('esx_status:onTick', data)
+93          TriggerEvent('cosmo_hud:onTick', data)
 ```
 5. Set `Config.Display` to false in `[esx]/esx_status/config.lua`
 6. Set `Config.Display` to false in `[esx]/esx_basicneeds/config.lua`
@@ -42,23 +42,24 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 ## Female ped health fix
 1. To make sure that health get fixed, open the file `[esx]/esx_basicneeds/client/main.lua`
 2. Go at the end
-    2. the position it's not important actually
+    2.1 the position it's not important actually
 3. Add this portion of code:
 ```
-        --Female ped health fix
-        Citizen.CreateThread(function()
-            while true do
-                Citizen.Wait(1)
-                if GetEntityMaxHealth(GetPlayerPed(-1)) ~= 200 then
-                    SetEntityMaxHealth(GetPlayerPed(-1), 200)
-                    SetEntityHealth(GetPlayerPed(-1), 200)
-                end
-            end
-        end)
+--Female ped health fix
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(1)
+        if GetEntityMaxHealth(GetPlayerPed(-1)) ~= 200 then
+            SetEntityMaxHealth(GetPlayerPed(-1), 200)
+            SetEntityHealth(GetPlayerPed(-1), 200)
+        end
+    end
+end)
 ```
 4. You're set!
 
 ## Known Bugs
+* When opening the phone the map gets bigger and goes out of the circle bounds.
 
 ## Credits/Original Code
 * [nojdh](https://github.com/nojdh)
