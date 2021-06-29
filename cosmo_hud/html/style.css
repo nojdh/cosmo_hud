@@ -94,15 +94,6 @@ body {
   text-shadow: 0.2vh 0.2vh 0vh rgb(22, 22, 22);
   transform: rotate(-180deg);
 }
-#FuelCircle {
-  width: 3vh !important;
-  height: 3vh !important;
-  position: absolute;
-  left: 20.4vh;
-  bottom: 4.2vh;
-  background: rgba(27, 27, 27, 0.336);
-  transform: rotate(-180deg);
-}
 
 .fa-gas-pump {
   color: white;

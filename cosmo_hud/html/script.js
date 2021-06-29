@@ -62,15 +62,6 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
-  FuelIndicator = new ProgressBar.Circle("#FuelCircle", {
-    color: "rgba(222, 222, 222, 1)",
-    trailColor: "rgba(184, 184, 184, 0.082)",
-    strokeWidth: 8,
-    duration: 2000,
-    trailWidth: 8,
-    easing: "easeInOut",
-  });
-
   VoiceIndicator = new ProgressBar.Circle("#VoiceIndicator", {
     color: "#4a4a4a",
     trailColor: "#4a4a4a",
@@ -99,51 +90,46 @@ window.addEventListener("message", function (event) {
     switch (data.voicelevel) {
       case 1:
         data.voicelevel = 33;
-        break;
+      break;
       case 2:
         data.voicelevel = 66;
-        break;
+      break;
       case 3:
         data.voicelevel = 100;
-        break;
+      break;
       default:
         data.voicelevel = 33;
-        break;
+      break;
     }
     VoiceIndicator.animate(data.voicelevel / 100);
   }
 
   // Light up path if talking
   if (data.talking == 1) {
-    VoiceIndicator.path.setAttribute("stroke", "white");
+    VoiceIndicator.path.setAttribute("stroke", "yellow");
   } else if (data.talking == false) {
-    VoiceIndicator.path.setAttribute("stroke", "darkgrey");
+    VoiceIndicator.path.setAttribute("stroke", "white");
   }
 
-  // Headset icon if using radio
-  if (data.radio == true) {
-    $("#VoiceIcon").removeClass("fa-microphone");
-    $("#VoiceIcon").addClass("fa-headset");
-  } else if (data.radio == false) {
-    $("#VoiceIcon").removeClass("fa-headset");
-    $("#VoiceIcon").addClass("fa-microphone");
+  // Hide health if full
+  if (data.showHealth == false) {
+    $("#HealthIndicator").fadeOut();
+  } else if (data.showHealth == true) {
+    $("#HealthIndicator").fadeIn();
   }
 
-  // Hide stress if disabled
-  if (data.action == "disable_stress") {
-    $("#StressIndicator").hide();
-  }
-
-  // Hide voice if disabled
-  if (data.action == "disable_voice") {
-    $("#VoiceIndicator").hide();
+  // Hide hunger if full
+  if(data.showHunger == false) {
+    $("#HungerIndicator").fadeOut();
+  } else if (data.showHunger == true) {
+    $("#HungerIndicator").fadeIn();
   }
 
   // Show oxygen if underwater
   if (data.showOxygen == true) {
-    $("#OxygenIndicator").show();
+    $("#OxygenIndicator").fadeIn();
   } else if (data.showOxygen == false) {
-    $("#OxygenIndicator").hide();
+    $("#OxygenIndicator").fadeOut();
   }
 
   // Hide armor if 0
@@ -153,6 +139,12 @@ window.addEventListener("message", function (event) {
     $("#ArmorIndicator").fadeIn();
   }
 
+  // Hide stress if disabled
+  if (data.showStress == false) {
+    $("#StressIndicator").hide();
+  } else if (data.showStress == true) {
+    $("#StressIndicator").show();
+  }
   if (data.stress == 0) {
     $("#StressIndicator").fadeOut();
   } else if (data.stress > 0) {
@@ -175,6 +167,7 @@ window.addEventListener("message", function (event) {
   if (data.thirst < 25) {
     $("#ThirstIcon").toggleClass("flash");
   }
+
   // Flash if hunger is low
   if (data.hunger < 25) {
     $("#HungerIcon").toggleClass("flash");
@@ -191,39 +184,16 @@ window.addEventListener("message", function (event) {
     Speedometer.path.setAttribute("stroke", "none");
   }
 
-  if (data.action == "update_fuel") {
-    let finalfuel = (data.fuel / 100) * 1.5385;
-    if (finalfuel > 0.9) {
-      FuelIndicator.animate(1.0);
-    } else if (finalfuel < 0.9) {
-      FuelIndicator.animate(finalfuel);
-    }
-    if (finalfuel < 0.2) {
-      FuelIndicator.path.setAttribute("stroke", "red");
-    } else if (finalfuel > 0.2) {
-      FuelIndicator.path.setAttribute("stroke", "white");
-    }
-  }
-
   if (data.showSpeedo == true) {
     $("#VehicleContainer").fadeIn();
   } else if (data.showSpeedo == false) {
     $("#VehicleContainer").fadeOut();
   }
 
-  if (data.showFuel == true) {
-    $("#FuelCircle").show();
-  } else if (data.showFuel == false) {
-    $("#FuelCircle").hide();
-  }
-
-  if (data.showUi == true) {
-    $(".container").show();
-  } else if (data.showUi == false) {
+  // Hide ui if pause menu is open
+  if (data.showUi == false) {
     $(".container").hide();
-  }
-
-  if (data.action == "toggle_hud") {
-    $("body").fadeToggle()
+  } else if (data.showUi == true) {
+    $(".container").show();
   }
 });
