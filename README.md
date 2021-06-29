@@ -42,7 +42,6 @@ to
 ## Female ped health fix
 1. To make sure that health get fixed, open the file `[esx]/esx_basicneeds/client/main.lua`
 2. Go at the end
-    2. the position it's not important actually
 3. Add this portion of code:
 ```
 --Female ped health fix
