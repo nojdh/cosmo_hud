@@ -1,19 +1,25 @@
 fx_version 'cerulean'
+game 'gta5'
+
 name 'cosmo_hud'
 description 'cosmo_hud for fivem, uses library from loading.io'
+author 'CosmoKramer | lilfraae'
+version "1.2"
+
 ui_page 'html/ui.html'
-author 'CosmoKramer'
-game 'gta5'
 
 files {
     'html/ui.html',
     'html/script.js',
-    'html/style.css',
     'html/loading-bar.js',
+    'html/style.css',
+    'stream/*',
 }
 
+shared_scripts {
+    'config/config.lua'
+}
 
 client_scripts {
-    'client.lua',
-    'config.lua'
+    'client/client.lua',
 }
