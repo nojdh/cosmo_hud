@@ -64,7 +64,7 @@ end)
 * [nojdh](https://github.com/nojdh)
     * [cosmo_hud](https://github.com/nojdh/cosmo_hud)
 * [colored_map](https://forum.cfx.re/u/Antoine)
-* [PostalCodes_StreetNames](https://forum.cfx.re/t/release-original-street-names-w-postal-numbers/8717)
+* [PostalMap](https://github.com/ocrp/postal_map)
 * [Loading-Bar](https://loading.io/progress/)
 
 ## Legal
