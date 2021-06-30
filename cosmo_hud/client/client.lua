@@ -79,7 +79,6 @@ Citizen.CreateThread(function()
             thirst = thirst,
             stress = stress,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
-            --talking = NetworkIsPlayerTalking(PlayerId())
         })
     end
 end)
