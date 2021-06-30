@@ -17,9 +17,10 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 * Required:
     * [esx_status](https://github.com/esx-framework/esx_status)
     * [esx_basicneeds](https://github.com/esx-framework/esx_basicneeds)
-    * [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
 * Optional:
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
+    * [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
+    * [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
 
 ## Download & Installation
 1. Download Master or Release & Extract the .zip or Open the .zip.
@@ -54,6 +55,25 @@ Citizen.CreateThread(function()
         end
     end
 end)
+```
+4. You're set!
+
+## Setup voice indicator w/TokoVoIP
+1. Install [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
+2. Go to `tokovoip_script/src`
+3. Open the file `c_TokoVoip.lua` and search for the function `function TokoVoip.updateTokoVoipInfo(self, forceUpdate)` around line 55-56
+4. Before the `end` add this code:
+```
+exports['cosmo_hud']:Voicelevel(self.mode)
+```
+5. You're set!
+
+## Setup voice indicator w/mumble-voip
+1. Install [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
+2. Go to `mumble-voip/client.lua` and search for `playerData.mode = voiceMode` around line 803
+3. Under this assignment add this code:
+```
+exports['cosmo_hud']:Voicelevel(voiceMode)
 ```
 4. You're set!
 
