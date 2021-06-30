@@ -79,7 +79,7 @@ Citizen.CreateThread(function()
             thirst = thirst,
             stress = stress,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
-            talking = NetworkIsPlayerTalking(PlayerId())
+            --talking = NetworkIsPlayerTalking(PlayerId())
         })
     end
 end)
@@ -89,11 +89,17 @@ end)
 function Voicelevel(val)
     SendNUIMessage({
         action = "voice_level", 
-        voicelevel = val
+        voicelevel = val,
     })
 end
-
 exports('Voicelevel', Voicelevel)
+
+function isTalking(talk)
+    SendNUIMessage({
+        talking = talk
+    })
+end
+exports('isTalking', isTalking)
 -- End Microphone stuff
 
 -- Map stuff
