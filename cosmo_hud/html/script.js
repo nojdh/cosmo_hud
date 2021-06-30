@@ -125,6 +125,13 @@ window.addEventListener("message", function (event) {
     $("#HungerIndicator").fadeIn();
   }
 
+  // Hide thirst if full
+  if(data.showthirst == false) {
+    $("#ThirstIndicator").fadeOut();
+  } else if (data.showthirst == true) {
+    $("#ThirstIndicator").fadeIn();
+  }
+
   // Show oxygen if underwater
   if (data.showOxygen == true) {
     $("#OxygenIndicator").fadeIn();
