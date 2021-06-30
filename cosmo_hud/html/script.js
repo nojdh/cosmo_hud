@@ -98,16 +98,16 @@ window.addEventListener("message", function (event) {
   if (data.action == "voice_level") {
     switch (data.voicelevel) {
       case 1:
-        data.voicelevel = 33;
+        data.voicelevel = 66;
       break;
       case 2:
-        data.voicelevel = 66;
+        data.voicelevel = 33;
       break;
       case 3:
         data.voicelevel = 100;
       break;
       default:
-        data.voicelevel = 33;
+        data.voicelevel = 66;
       break;
     }
     VoiceIndicator.animate(data.voicelevel / 100);
