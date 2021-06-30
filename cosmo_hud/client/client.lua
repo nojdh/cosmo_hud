@@ -44,6 +44,30 @@ Citizen.CreateThread(function()
             SendNUIMessage({showHealth = true})
         end
 
+        if (hunger >= 25) then
+            SendNUIMessage({showHunger = false})
+        else
+            SendNUIMessage({showHunger = true})
+        end
+
+        if (thirst >= 25) then
+            SendNUIMessage({showthirst = false})
+        else
+            SendNUIMessage({showthirst = true})
+        end
+
+        if NetworkIsPlayerTalking(PlayerId()) then
+            SendNUIMessage({talking = true})
+        else
+            SendNUIMessage({talking = false})
+        end
+
+        if IsPauseMenuActive() then
+            SendNUIMessage({showUi = false})
+        elseif not IsPauseMenuActive() then
+            SendNUIMessage({showUi = true})
+        end 
+
         SendNUIMessage({
             action = "update_hud",
             hp = GetEntityHealth(PlayerPedId()) - 100,
@@ -52,14 +76,7 @@ Citizen.CreateThread(function()
             thirst = thirst,
             stress = stress,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
-            talking = NetworkIsPlayerTalking(PlayerId())
         })
-
-        if IsPauseMenuActive() then
-            SendNUIMessage({showUi = false})
-        elseif not IsPauseMenuActive() then
-            SendNUIMessage({showUi = true})
-        end 
     end
 end)
 -- End Principal Loop
