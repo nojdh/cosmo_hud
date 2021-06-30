@@ -116,9 +116,9 @@ window.addEventListener("message", function (event) {
   // Light up path if talking
   if (data.talking == 1) {
     VoiceIndicator.path.setAttribute("stroke", "yellow");
-  } else if (data.talking == false) {
+  } else if (data.talking == 0) {
     VoiceIndicator.path.setAttribute("stroke", "white");
-  }
+  } 
 
   // Hide health if full
   if (data.showHealth == false) {
