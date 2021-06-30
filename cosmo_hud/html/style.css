@@ -68,8 +68,22 @@ body {
   bottom: 1.25vh;
   }
 
+.fa-laptop {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.0vh;
+  bottom: 1.23vh;
+}
 
-
+.id {
+  color: black;
+  position: absolute;
+  font-family: Impact;
+  font-size: 2.5vh;
+  left: 0.35vh;
+  bottom: -0.47vh;
+}
 
 #SpeedCircle {
   width: 5vh !important;
