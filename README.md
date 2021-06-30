@@ -66,16 +66,45 @@ end)
 ```
 exports['cosmo_hud']:Voicelevel(self.mode)
 ```
-5. You're set!
+5. Then open the file `c_main.lua` and search for the function `RegisterNUICallback("setPlayerTalking", function(data, cb)` around line 62-63
+6. Replace the code from line 63 to line 84 with this code:
+```
+RegisterNUICallback("setPlayerTalking", function(data, cb)
+	voip.talking = tonumber(data.state);
+
+	if (voip.talking == 1) then
+		setPlayerData(voip.serverId, "voip:talking", 1, true);
+		exports['cosmo_hud']:isTalking(voip.talking)
+		if (GetConvar("gametype") == "gta5") then
+			PlayFacialAnim(GetPlayerPed(PlayerId()), "mic_chatter", "mp_facial");
+		elseif (GetConvar("gametype") == "rdr3") then
+			PlayRedMFacialAnimation(GetPlayerPed(PlayerId()), "face_human@gen_male@base", "mood_talking_normal");
+		end
+	else
+		setPlayerData(voip.serverId, "voip:talking", 0, true);
+		exports['cosmo_hud']:isTalking(voip.talking)
+		if (GetConvar("gametype") == "gta5") then
+			PlayFacialAnim(PlayerPedId(), "mood_normal_1", "facials@gen_male@base");
+		elseif (GetConvar("gametype") == "rdr3") then
+			PlayRedMFacialAnimation(PlayerPedId(), "face_human@gen_male@base", "mood_normal");
+		end
+	end
+	cb('ok');
+end)
+```
+7. You're set!
 
 ## Setup voice indicator w/mumble-voip
-1. Install [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
-2. Go to `mumble-voip/client.lua` and search for `playerData.mode = voiceMode` around line 803
-3. Under this assignment add this code:
+1. Download the legacy version
+2. Rename it in: `cosmo_hud`
+3. Install [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
+4. Go to `mumble-voip/client.lua` and search for `playerData.mode = voiceMode` around line 803
+5. Under this assignment add this code:
 ```
 exports['cosmo_hud']:Voicelevel(voiceMode)
 ```
-4. You're set!
+6. You're set!
+**Since today (30/06/2021) I'll not be supporting legacy version anymore!**
 
 ## Known Bugs/Issues
 * When opening the phone the map gets bigger and goes out of the circle bounds.
