@@ -77,8 +77,9 @@ exports['cosmo_hud']:Voicelevel(voiceMode)
 ```
 4. You're set!
 
-## Known Bugs
+## Known Bugs/Issues
 * When opening the phone the map gets bigger and goes out of the circle bounds.
+* When talking with TokoVoIP plugin the microphone icon doesn't light up but voice range changes when using the command.
 
 ## Credits/Original Code
 * [nojdh](https://github.com/nojdh)
