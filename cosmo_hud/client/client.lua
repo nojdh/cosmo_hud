@@ -32,6 +32,15 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(Config['TickTime'])
 
+        if (Config['ShowServerID']) then
+            SendNUIMessage({
+                pid = true,
+                playerid = GetPlayerServerId(PlayerId()),
+            })
+        else
+            SendNUIMessage({pid = false})
+        end
+
         if IsPedSwimmingUnderWater(PlayerPedId()) then
             SendNUIMessage({showOxygen = true})
         else
@@ -144,15 +153,6 @@ CreateThread(function()
             SendNUIMessage({showStress = false})
         else
             SendNUIMessage({showStress = true})
-        end
-
-        if (Config['ShowServerID']) then
-            SendNUIMessage({
-                pid = true,
-                playerid = GetPlayerServerId(PlayerId()),
-            })
-        else
-            SendNUIMessage({pid = false})
         end
     end
 end)
