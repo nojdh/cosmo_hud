@@ -145,6 +145,15 @@ CreateThread(function()
         else
             SendNUIMessage({showStress = true})
         end
+
+        if (Config['ShowServerID']) then
+            SendNUIMessage({
+                pid = true,
+                playerid = GetPlayerServerId(PlayerId()),
+            })
+        else
+            SendNUIMessage({pid = false})
+        end
     end
 end)
 -- End Map stuff
