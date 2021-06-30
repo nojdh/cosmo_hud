@@ -62,6 +62,15 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
+  PlayerServerID = new ProgressBar.Circle("#ID", {
+    color: "#4a4a4a",
+    trailColor: "rgb(255, 255, 255)",
+    strokeWidth: 12,
+    trailWidth: 12,
+    duration: 250,
+    easing: "easeInOut",
+  });
+
   VoiceIndicator = new ProgressBar.Circle("#VoiceIndicator", {
     color: "#4a4a4a",
     trailColor: "#4a4a4a",
@@ -203,4 +212,13 @@ window.addEventListener("message", function (event) {
   } else if (data.showUi == true) {
     $(".container").show();
   }
+
+  // PlayerID
+  if (data.pid == true) {
+    document.getElementById("ServerID").innerHTML = data.playerid;
+  } else if (data.pid == false) {
+    $("#ID").hide()
+  }
+  
 });
+
