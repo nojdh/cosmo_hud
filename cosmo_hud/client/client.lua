@@ -65,17 +65,11 @@ Citizen.CreateThread(function()
             SendNUIMessage({showthirst = true})
         end
 
-        if NetworkIsPlayerTalking(PlayerId()) then
-            SendNUIMessage({talking = true})
-        else
-            SendNUIMessage({talking = false})
-        end
-
         if IsPauseMenuActive() then
             SendNUIMessage({showUi = false})
         elseif not IsPauseMenuActive() then
             SendNUIMessage({showUi = true})
-        end 
+        end
 
         SendNUIMessage({
             action = "update_hud",
@@ -85,6 +79,7 @@ Citizen.CreateThread(function()
             thirst = thirst,
             stress = stress,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
+            talking = NetworkIsPlayerTalking(PlayerId())
         })
     end
 end)
