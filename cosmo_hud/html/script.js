@@ -63,8 +63,8 @@ $(document).ready(function () {
   });
 
   PlayerServerID = new ProgressBar.Circle("#ID", {
-    color: "#4a4a4a",
-    trailColor: "rgb(255, 255, 255)",
+    color: "#000000",
+    trailColor: "#FF0046",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
