@@ -53,16 +53,24 @@ Citizen.CreateThread(function()
             SendNUIMessage({showHealth = true})
         end
 
-        if (hunger >= 25) then
-            SendNUIMessage({showHunger = false})
-        else
+        if Config['ShowHunger'] then
             SendNUIMessage({showHunger = true})
+        else
+            if (hunger >= 25) then
+                SendNUIMessage({showHunger = false})
+            else
+                SendNUIMessage({showHunger = true})
+            end
         end
 
-        if (thirst >= 25) then
-            SendNUIMessage({showthirst = false})
-        else
+        if Config['ShowThirst'] then
             SendNUIMessage({showthirst = true})
+        else
+            if (thirst >= 25) then
+                SendNUIMessage({showthirst = false})
+            else
+                SendNUIMessage({showthirst = true})
+            end
         end
 
         if IsPauseMenuActive() then
@@ -138,7 +146,7 @@ end)
 CreateThread(function()
     while true do
         Citizen.Wait(Config['TickTime'])
-        SetRadarZoom(1150)
+        SetRadarZoom(1100)
         if (Config['ShowRadar']) == false then
             if IsPedInAnyVehicle(PlayerPedId(-1), false) then
                 DisplayRadar(true)
