@@ -6,7 +6,6 @@ Citizen.CreateThread(function()
         Citizen.Wait(100)
     end
 end)
--- End Config Library
 
 -- Principal Event
 RegisterNetEvent("cosmo_hud:onTick")
@@ -19,19 +18,19 @@ AddEventHandler("cosmo_hud:onTick", function(status)
         thirst = status.val / 10000 
     end)
             
-    if (Config['ShowStress']) then
+    if not Config['ShowStress'] then
         TriggerEvent('esx_status:getStatus', 'stress', function(status) 
             stress = status.val / 10000 
         end)
     end
 end)
--- End Principal Event
 
 -- Principal Loop
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(Config['TickTime'])
 
+        -- Player ID
         if (Config['ShowServerID']) then
             SendNUIMessage({
                 pid = true,
@@ -41,44 +40,57 @@ Citizen.CreateThread(function()
             SendNUIMessage({pid = false})
         end
 
+        -- Show Pex Oxygen underwater
         if IsPedSwimmingUnderWater(PlayerPedId()) then
             SendNUIMessage({showOxygen = true})
         else
             SendNUIMessage({showOxygen = false})
         end
         
+        -- Show/Hide Entity Health
         if ((GetEntityHealth(PlayerPedId()) - 100) >= 100) then
             SendNUIMessage({showHealth = false})
         else
             SendNUIMessage({showHealth = true})
         end
 
-        if Config['ShowHunger'] then
-            SendNUIMessage({showHunger = true})
-        else
-            if (hunger >= 25) then
-                SendNUIMessage({showHunger = false})
-            else
-                SendNUIMessage({showHunger = true})
+        -- Show/Hide SpeedO
+        if Config['ShowSpeed'] then
+            if IsPedInAnyVehicle(PlayerPedId(), false) 
+            and not IsPedInFlyingVehicle(PlayerPedId()) 
+            and not IsPedInAnySub(PlayerPedId()) then
+                SendNUIMessage({showSpeedo = true})
+            elseif not IsPedInAnyVehicle(PlayerPedId(), false) then
+                SendNUIMessage({showSpeedo = false})
             end
         end
 
-        if Config['ShowThirst'] then
-            SendNUIMessage({showthirst = true})
+        -- Show/Hide Stress (needs to be configurated inside esx_basicneeds)
+        if not Config['ShowStress'] then
+            SendNUIMessage({showStress = false})
         else
-            if (thirst >= 25) then
-                SendNUIMessage({showthirst = false})
-            else
-                SendNUIMessage({showthirst = true})
-            end
+            SendNUIMessage({showStress = true})
         end
 
+        -- Checks if pause menu is active
         if IsPauseMenuActive() then
             SendNUIMessage({showUi = false})
         elseif not IsPauseMenuActive() then
             SendNUIMessage({showUi = true})
         end
 
+        -- Show/Hide radar
+        if not Config['ShowRadar'] then
+            if IsPedInAnyVehicle(PlayerPedId(-1), false) then
+                DisplayRadar(true)
+            else
+                DisplayRadar(false)
+            end
+        else
+            DisplayRadar(true)
+        end
+
+        -- Information sent to JavaScript
         SendNUIMessage({
             action = "update_hud",
             hp = GetEntityHealth(PlayerPedId()) - 100,
@@ -90,7 +102,6 @@ Citizen.CreateThread(function()
         })
     end
 end)
--- End Principal Loop
 
 -- Microphone stuff
 function Voicelevel(val)
@@ -99,23 +110,19 @@ function Voicelevel(val)
         voicelevel = val,
     })
 end
-exports('Voicelevel', Voicelevel)
 
 function isTalking(talk)
     SendNUIMessage({
         talking = talk
     })
 end
-exports('isTalking', isTalking)
--- End Microphone stuff
 
 -- Map stuff
-local x = -0.015
-local y = -0.015
-local w = 0.16
-local h = 0.25
-
 Citizen.CreateThread(function()
+    local x = -0.015
+    local y = -0.015
+    local w = 0.16
+    local h = 0.25
     local minimap = RequestScaleformMovie("minimap")
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
@@ -125,7 +132,7 @@ Citizen.CreateThread(function()
     SetMinimapComponentPosition('minimap', 'L', 'B', x, y, w, h)
     SetMinimapComponentPosition('minimap_mask', 'L', 'B', x + 0.17, y + 0.09, 0.072, 0.162)
     SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.035, -0.03, 0.18, 0.22)
-    
+
     SetMapZoomDataLevel(0, 0.96, 0.9, 0.08, 0.0, 0.0) -- Level 0
     SetMapZoomDataLevel(1, 1.6, 0.9, 0.08, 0.0, 0.0) -- Level 1
     SetMapZoomDataLevel(2, 8.6, 0.9, 0.08, 0.0, 0.0) -- Level 2
@@ -147,35 +154,13 @@ Citizen.CreateThread(function()
     end
 end)
 
-CreateThread(function()
-    while true do
-        Citizen.Wait(Config['TickTime'])
-        SetRadarZoom(1100)
-        if (Config['ShowRadar']) == false then
-            if IsPedInAnyVehicle(PlayerPedId(-1), false) then
-                DisplayRadar(true)
-            else
-                DisplayRadar(false)
-            end
-        else
-            DisplayRadar(true)
-        end
-        
-        if (Config['ShowStress']) == false then
-            SendNUIMessage({showStress = false})
-        else
-            SendNUIMessage({showStress = true})
-        end
-    end
-end)
--- End Map stuff
-
 -- Vehicle Things
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(Config['TickTime'])
 
         if IsPedInAnyVehicle(PlayerPedId(), true) then
+            SetRadarZoom(1100)
             local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
             local speed = math.floor(GetEntitySpeed(veh) * 3.6)
             local vehhash = GetEntityModel(veh)
@@ -184,22 +169,7 @@ Citizen.CreateThread(function()
         end
     end
 end)
--- End Vehicle Things
 
--- SpeedO Things
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(Config['TickTime'])
-
-        if Config['ShowSpeed'] then
-            if IsPedInAnyVehicle(PlayerPedId(), false) 
-            and not IsPedInFlyingVehicle(PlayerPedId()) 
-            and not IsPedInAnySub(PlayerPedId()) then
-                SendNUIMessage({showSpeedo = true})
-            elseif not IsPedInAnyVehicle(PlayerPedId(), false) then
-                SendNUIMessage({showSpeedo = false})
-            end
-        end
-    end
-end)
--- End SpeedO Things
+-- Exports
+exports('Voicelevel', Voicelevel)
+exports('isTalking', isTalking)
