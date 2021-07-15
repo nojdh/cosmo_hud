@@ -127,20 +127,6 @@ window.addEventListener("message", function (event) {
     $("#HealthIndicator").fadeIn();
   }
 
-  // Hide hunger if full
-  if(data.showHunger == false) {
-    $("#HungerIndicator").fadeOut();
-  } else if (data.showHunger == true) {
-    $("#HungerIndicator").fadeIn();
-  }
-
-  // Hide thirst if full
-  if(data.showthirst == false) {
-    $("#ThirstIndicator").fadeOut();
-  } else if (data.showthirst == true) {
-    $("#ThirstIndicator").fadeIn();
-  }
-
   // Show oxygen if underwater
   if (data.showOxygen == true) {
     $("#OxygenIndicator").fadeIn();
