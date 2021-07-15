@@ -110,7 +110,7 @@ exports('isTalking', isTalking)
 -- End Microphone stuff
 
 -- Map stuff
-local x = -0.025
+local x = -0.015
 local y = -0.015
 local w = 0.16
 local h = 0.25
@@ -119,19 +119,23 @@ Citizen.CreateThread(function()
     local minimap = RequestScaleformMovie("minimap")
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
-    AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap",
-                      "radarmasksm")
+    AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
     
     SetMinimapClipType(1)
     SetMinimapComponentPosition('minimap', 'L', 'B', x, y, w, h)
-    SetMinimapComponentPosition('minimap_mask', 'L', 'B', x + 0.17, y + 0.09,
-                                0.072, 0.162)
-    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.035, -0.03, 0.18,
-                                0.22)
+    SetMinimapComponentPosition('minimap_mask', 'L', 'B', x + 0.17, y + 0.09, 0.072, 0.162)
+    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.035, -0.03, 0.18, 0.22)
+    
+    SetMapZoomDataLevel(0, 0.96, 0.9, 0.08, 0.0, 0.0) -- Level 0
+    SetMapZoomDataLevel(1, 1.6, 0.9, 0.08, 0.0, 0.0) -- Level 1
+    SetMapZoomDataLevel(2, 8.6, 0.9, 0.08, 0.0, 0.0) -- Level 2
+    SetMapZoomDataLevel(3, 12.3, 0.9, 0.08, 0.0, 0.0) -- Level 3
+    SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0) -- Level 4
+
     Wait(5000)
-    SetRadarBigmapEnabled(true, false)
+    SetBigmapActive(true, false)
     Wait(0)
-    SetRadarBigmapEnabled(false, false)
+    SetBigmapActive(false, false)
 
     while true do
         Wait(0)
