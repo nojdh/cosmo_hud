@@ -79,6 +79,13 @@ Citizen.CreateThread(function()
             SendNUIMessage({showUi = true})
         end
 
+        -- Show/hide fuel icon
+        if Config['ShowFuel'] then
+            SendNUIMessage({showFuel = true})
+        else
+            SendNUIMessage({showFuel = false})
+        end
+
         -- Show/Hide radar
         if not Config['ShowRadar'] then
             if IsPedInAnyVehicle(PlayerPedId(-1), false) then
@@ -166,6 +173,17 @@ Citizen.CreateThread(function()
             local vehhash = GetEntityModel(veh)
             local maxspeed = GetVehicleModelMaxSpeed(vehhash) * 3.6
             SendNUIMessage({speed = speed, maxspeed = maxspeed})
+        end
+
+        if Config['ShowFuel'] then
+            if IsPedInAnyVehicle(PlayerPedId(), true) then
+                local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
+                local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
+                SendNUIMessage({
+                    action = "update_fuel",
+                    fuel = fuellevel
+                })
+            end
         end
     end
 end)
