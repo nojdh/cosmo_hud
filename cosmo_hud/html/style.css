@@ -77,6 +77,15 @@ body {
   bottom: 1.25vh;
   }
 
+.fa-gas-pump {
+ color: white;
+  font-size: 1vh;
+  position: inherit;
+  left: 1vh;
+  bottom: 1vh;
+  transform: rotate(-180deg);
+}
+
 .id {
   color: black;
   position: absolute;
@@ -110,12 +119,14 @@ body {
   transform: rotate(-180deg);
 }
 
-.fa-gas-pump {
+#FuelCircle {
+  width: 3vh !important;
+  height: 3vh !important;
   color: white;
-  font-size: 1vh;
-  position: inherit;
-  left: 1vh;
-  bottom: 1vh;
+  position: absolute;
+  left: 20.4vh;
+  bottom: 4.2vh;
+  background: rgba(27, 27, 27, 0.336);
   transform: rotate(-180deg);
 }
 
