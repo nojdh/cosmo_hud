@@ -62,6 +62,15 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
+  FuelIndicator = new ProgressBar.Circle("#FuelCircle", {
+    color: "rgba(222, 222, 222, 1)",
+    trailColor: "rgba(184, 184, 184, 0.082)",
+    strokeWidth: 6,
+    duration: 100,
+    trailWidth: 6,
+    easing: "easeInOut",
+  });
+
   PlayerServerID = new ProgressBar.Circle("#ID", {
     color: "#000000",
     trailColor: "#FF0046",
@@ -151,6 +160,28 @@ window.addEventListener("message", function (event) {
     $("#StressIndicator").fadeOut();
   } else if (data.stress > 0) {
     $("#StressIndicator").fadeIn();
+  }
+
+  // Hide fuel if disabled
+  if (data.showFuel == true) {
+    $("#FuelCircle").show();
+  } else if (data.showFuel == false) {
+    $("#FuelCircle").hide();
+  }
+
+  if (data.action == "update_fuel") {
+    let finalfuel = (data.fuel / 100) * 1.5385;
+    if (finalfuel > 0.9) {
+      FuelIndicator.animate(1.0);
+    } else {
+      FuelIndicator.animate(finalfuel);
+    }
+
+    if (finalfuel < 0.2) {
+      FuelIndicator.path.setAttribute("stoke", "red");
+    } else {
+      FuelIndicator.path.setAttribute("stoke", "white");
+    }
   }
 
   // Change color and icon if HP is 0 (dead)
