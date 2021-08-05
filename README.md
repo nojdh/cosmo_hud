@@ -95,15 +95,14 @@ end)
 7. You're set!
 
 ## Setup voice indicator w/mumble-voip
-1. Download the legacy version
-2. Rename it in: `cosmo_hud`
-3. Install [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
-4. Go to `mumble-voip/client.lua` and search for `playerData.mode = voiceMode` around line 803
-5. Under this assignment add this code:
+1. Install [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
+2. Go to `mumble-voip/client.lua` and search for `playerData.mode = voiceMode` around line 803
+3. Under this assignment add this code:
 ```
 exports['cosmo_hud']:Voicelevel(voiceMode)
 ```
-6. You're set!
+4. You're set!
+
 **Since today (30/06/2021) I'll not be supporting legacy version anymore!**
 
 ## Known Bugs/Issues
