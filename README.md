@@ -12,6 +12,7 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 * Check your speed while driving.
 * Simple and non-invasive ui.
 * Female ped health fix.
+* Vehicle fuel integration.
 
 ## Requirements
 * Required:
