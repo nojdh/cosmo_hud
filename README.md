@@ -21,6 +21,7 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
     * [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
     * [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
+    * [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
 
 ## Download & Installation
 1. Download Master or Release & Extract the .zip or Open the .zip.
@@ -56,6 +57,12 @@ Citizen.CreateThread(function()
     end
 end)
 ```
+4. You're set!
+
+## Setup LegacyFuel
+1. Install [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
+2. Open `LegacyFuel/config.lua`
+3. Set `Config.EnableHUD` from true to false
 4. You're set!
 
 ## Setup voice indicator w/TokoVoIP
