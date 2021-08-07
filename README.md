@@ -71,7 +71,7 @@ end)
 1. Install [SaltyChat](https://github.com/saltminede/saltychat-fivem)
 2. Open the solution file (`saltychat/SaltyChat-FiveM.sln`) with Visual Studio 2019
 3. Once Visual Studio has opened, double click on the `VoiceManager.cs` under the `SaltyClient`:
-![What to click on 1](https://imgur.com/wRjsgZq)
+![What to click on 1](https://i.imgur.com/wRjsgZq.jpg)
 4. Open the `Methods (Proximity)` region
 5. Replace the if where the condition is `isTalking` with:
 ```
