@@ -23,6 +23,7 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
     * [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
     * [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
     * [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
+    * [SaltyChat](https://github.com/saltminede/saltychat-fivem)
 
 ## Download & Installation
 1. Download Master or Release & Extract the .zip or Open the .zip.
@@ -65,6 +66,39 @@ end)
 2. Open `LegacyFuel/config.lua`
 3. Set `Config.EnableHUD` from true to false
 4. You're set!
+
+## Setup voice indicator w/SaltyChat
+1. Install [SaltyChat](https://github.com/saltminede/saltychat-fivem)
+2. Open the solution file (`saltychat/SaltyChat-FiveM.sln`) with Visual Studio 2019
+3. Once Visual Studio has opened, double click on the `VoiceManager.cs` under the `SaltyClient`:
+![What to click on 1](https://imgur.com/wRjsgZq)
+4. Open the `Methods (Proximity)` region
+5. Replace the if where the condition is `isTalking` with:
+```
+if (isTalking) 
+{
+    Exports["cosmo_hud"].isTalking(isTalking);
+    API.PlayFacialAnim(Game.PlayerPed.Handle, "mic_chatter", "mp_facial");
+}
+else 
+{
+    Exports["cosmo_hud"].isTalking(isTalking);
+    API.PlayFacialAnim(Game.PlayerPed.Handle, "mood_normal_1", "facials@gen_male@variations@normal");
+} 
+```
+6. Move to the function below, which is called `public void ToggleVoiceRange()`
+7. You'll need to add another export underneath this line at 1077:
+```
+1077          BaseScript.TriggerServerEvent(Event.SaltyChat_SetVoiceRange, this.VoiceRange);
+
+to
+
+1077          BaseScript.TriggerServerEvent(Event.SaltyChat_SetVoiceRange, this.VoiceRange);
+1078          Exports["cosmo_hud"].Voicelevel(this.VoiceRange);
+```
+8. Build the solution as explained by the SaltyChat team
+9. Adjust the variables inside the SaltyChat config file
+10. You're set!
 
 ## Setup voice indicator w/TokoVoIP
 1. Install [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
