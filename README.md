@@ -20,7 +20,6 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
     * [esx_basicneeds](https://github.com/esx-framework/esx_basicneeds)
 * Optional:
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
-    * [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
     * [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
     * [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
     * [SaltyChat](https://github.com/saltminede/saltychat-fivem)
@@ -127,17 +126,6 @@ RegisterNUICallback("setPlayerTalking", function(data, cb)
 end)
 ```
 7. You're set!
-
-## Setup voice indicator w/mumble-voip
-1. Install [mumble-voip](https://github.com/FrazzIe/mumble-voip-fivem)
-2. Go to `mumble-voip/client.lua` and search for `playerData.mode = voiceMode` around line 803
-3. Under this assignment add this code:
-```
-exports['cosmo_hud']:Voicelevel(voiceMode)
-```
-4. You're set!
-
-**Since today (30/06/2021) I'll not be supporting legacy version anymore!**
 
 ## Known Bugs/Issues
 * When opening the phone the map gets bigger and goes out of the circle bounds.
