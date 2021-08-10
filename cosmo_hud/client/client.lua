@@ -10,6 +10,10 @@ end)
 -- Principal Event
 RegisterNetEvent("cosmo_hud:onTick")
 AddEventHandler("cosmo_hud:onTick", function(status)
+    local playerPed  = PlayerPedId()
+	local prevHealth = GetEntityHealth(playerPed)
+	local health     = prevHealth
+
     TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
         hunger = status.val / 10000 
     end)
@@ -23,6 +27,24 @@ AddEventHandler("cosmo_hud:onTick", function(status)
             stress = status.val / 10000 
         end)
     end
+
+    for k, v in pairs(status) do
+		if v.name == 'hunger' and v.percent == 0 then
+			if prevHealth <= 150 then
+				health = health - 5
+			else
+				health = health - 1
+			end
+		elseif v.name == 'thirst' and v.percent == 0 then
+			if prevHealth <= 150 then
+				health = health - 5
+			else
+				health = health - 1
+			end
+		end
+	end
+	
+	if health ~= prevHealth then SetEntityHealth(playerPed, health) end
 end)
 
 -- Principal Loop
@@ -40,11 +62,20 @@ Citizen.CreateThread(function()
             SendNUIMessage({pid = false})
         end
 
-        -- Show Pex Oxygen underwater
+        -- Show Ped Oxygen underwater
         if IsPedSwimmingUnderWater(PlayerPedId()) then
             SendNUIMessage({showOxygen = true})
         else
             SendNUIMessage({showOxygen = false})
+        end
+
+        -- Show Ped Oxygen when sprinting
+        if Config['ShowStamina'] then
+            if IsPedSprinting(PlayerPedId()) then
+                SendNUIMessage({showStamina = true})
+            else
+                SendNUIMessage({showStamina = false})
+            end
         end
         
         -- Show/Hide Entity Health
@@ -97,6 +128,27 @@ Citizen.CreateThread(function()
             DisplayRadar(true)
         end
 
+        -- Vehicle Things
+        if IsPedInAnyVehicle(PlayerPedId(), true) then
+            SetRadarZoom(1100)
+            local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
+            local speed = math.floor(GetEntitySpeed(veh) * 3.6)
+            local vehhash = GetEntityModel(veh)
+            local maxspeed = GetVehicleModelMaxSpeed(vehhash) * 3.6
+            SendNUIMessage({speed = speed, maxspeed = maxspeed})
+        end
+
+        if Config['ShowFuel'] then
+            if IsPedInAnyVehicle(PlayerPedId(), true) then
+                local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
+                local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
+                SendNUIMessage({
+                    action = "update_fuel",
+                    fuel = fuellevel
+                })
+            end
+        end
+
         -- Information sent to JavaScript
         SendNUIMessage({
             action = "update_hud",
@@ -106,23 +158,10 @@ Citizen.CreateThread(function()
             thirst = thirst,
             stress = stress,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
+            stamina = GetPlayerSprintTimeRemaining(PlayerId()) * 10,
         })
     end
 end)
-
--- Microphone stuff
-function Voicelevel(val)
-    SendNUIMessage({
-        action = "voice_level", 
-        voicelevel = val,
-    })
-end
-
-function isTalking(talk)
-    SendNUIMessage({
-        talking = talk
-    })
-end
 
 -- Map stuff
 Citizen.CreateThread(function()
@@ -161,32 +200,19 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Vehicle Things
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(Config['TickTime'])
+-- Microphone
+function Voicelevel(val)
+    SendNUIMessage({
+        action = "voice_level", 
+        voicelevel = val,
+    })
+end
 
-        if IsPedInAnyVehicle(PlayerPedId(), true) then
-            SetRadarZoom(1100)
-            local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
-            local speed = math.floor(GetEntitySpeed(veh) * 3.6)
-            local vehhash = GetEntityModel(veh)
-            local maxspeed = GetVehicleModelMaxSpeed(vehhash) * 3.6
-            SendNUIMessage({speed = speed, maxspeed = maxspeed})
-        end
-
-        if Config['ShowFuel'] then
-            if IsPedInAnyVehicle(PlayerPedId(), true) then
-                local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
-                local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
-                SendNUIMessage({
-                    action = "update_fuel",
-                    fuel = fuellevel
-                })
-            end
-        end
-    end
-end)
+function isTalking(talk)
+    SendNUIMessage({
+        talking = talk
+    })
+end
 
 -- Exports
 exports('Voicelevel', Voicelevel)
