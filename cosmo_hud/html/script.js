@@ -159,6 +159,9 @@ window.addEventListener("message", function (event) {
   } else if (data.showStamina == false) {
     $("#StaminaIndicator").fadeOut();
   }
+  if (data.hideStamina == true) {
+    $("#StaminaIndicator").hide();
+  }
 
   // Hide armor if 0
   if (data.armor == 0) {

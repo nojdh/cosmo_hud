@@ -76,6 +76,8 @@ Citizen.CreateThread(function()
             else
                 SendNUIMessage({showStamina = false})
             end
+        else
+            SendNUIMessage({hideStamina = true})
         end
         
         -- Show/Hide Entity Health
