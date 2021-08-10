@@ -53,6 +53,15 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
+  StaminaIndicator = new ProgressBar.Circle("#StaminaIndicator", {
+    color: "#FDD023",
+    trailColor: "#b38b01",
+    strokeWidth: 10,
+    trailWidth: 10,
+    duration: 250,
+    easing: "easeInOut",
+  });
+
   Speedometer = new ProgressBar.Circle("#SpeedCircle", {
     color: "rgba(222, 222, 222, 1)",
     trailColor: "rgba(184, 184, 184, 0.082)",
@@ -101,6 +110,7 @@ window.addEventListener("message", function (event) {
     ThirstIndicator.animate(data.thirst / 100);
     StressIndicator.animate(data.stress / 100);
     OxygenIndicator.animate(data.oxygen / 100);
+    StaminaIndicator.animate(data.stamina / 100);
   }
 
   // Get current voice level and animate path
@@ -141,6 +151,13 @@ window.addEventListener("message", function (event) {
     $("#OxygenIndicator").fadeIn();
   } else if (data.showOxygen == false) {
     $("#OxygenIndicator").fadeOut();
+  }
+
+  // Show stamina if sprinting
+  if (data.showStamina == true) {
+    $("#StaminaIndicator").fadeIn();
+  } else if (data.showStamina == false) {
+    $("#StaminaIndicator").fadeOut();
   }
 
   // Hide armor if 0
