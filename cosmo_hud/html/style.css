@@ -45,6 +45,14 @@ body {
   bottom: 1.2vh;
 }
 
+.fa-bolt {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.5vh;
+  bottom: 1.2vh;
+}
+
 .fa-brain, .fa-headset  {
   color: white;
   position: absolute;
@@ -57,7 +65,7 @@ body {
   color: white;
   position: absolute;
   font-size: 1.6vh;
-  left: 1vh;
+  left: 0.9vh;
   bottom: 1.3vh;
 }
 
