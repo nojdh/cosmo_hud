@@ -27,24 +27,6 @@ AddEventHandler("cosmo_hud:onTick", function(status)
             stress = status.val / 10000 
         end)
     end
-
-    for k, v in pairs(status) do
-		if v.name == 'hunger' and v.percent == 0 then
-			if prevHealth <= 150 then
-				health = health - 5
-			else
-				health = health - 1
-			end
-		elseif v.name == 'thirst' and v.percent == 0 then
-			if prevHealth <= 150 then
-				health = health - 5
-			else
-				health = health - 1
-			end
-		end
-	end
-	
-	if health ~= prevHealth then SetEntityHealth(playerPed, health) end
 end)
 
 -- Principal Loop
