@@ -117,7 +117,7 @@ Citizen.CreateThread(function()
 
         -- Vehicle Things
         if IsPedInAnyVehicle(PlayerPedId(), true) then
-            SetRadarZoom(1100)
+            SetRadarZoom(1000)
             local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
             local speed = math.floor(GetEntitySpeed(veh) * 3.6)
             local vehhash = GetEntityModel(veh)
@@ -152,19 +152,16 @@ end)
 
 -- Map stuff
 Citizen.CreateThread(function()
-    local x = -0.015
-    local y = -0.015
-    local w = 0.16
-    local h = 0.25
-    
+    local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
+
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
     AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
     
     SetMinimapClipType(1)
-    SetMinimapComponentPosition('minimap', 'L', 'B', x, y, w, h)
-    SetMinimapComponentPosition('minimap_mask', 'L', 'B', x + 0.17, y + 0.09, 0.072, 0.162)
-    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.035, -0.03, 0.18, 0.22)
+    SetMinimapComponentPosition('minimap', 'L', 'B', posX, posY, width, height)
+    SetMinimapComponentPosition('minimap_mask', 'L', 'B', posX + 0.17, posY + 0.09, 0.072, 0.162)
+    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.025, 0.022, 0.256, 0.337)
 
     SetMapZoomDataLevel(0, 0.96, 0.9, 0.08, 0.0, 0.0) -- Level 0
     SetMapZoomDataLevel(1, 1.6, 0.9, 0.08, 0.0, 0.0) -- Level 1
@@ -181,8 +178,6 @@ Citizen.CreateThread(function()
         Wait(0)
         BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
         ScaleformMovieMethodAddParamInt(3)
-        EndScaleformMovieMethod()
-        BeginScaleformMovieMethod(minimap, 'HIDE_SATNAV')
         EndScaleformMovieMethod()
         SetBlipAlpha(GetNorthRadarBlip(), 0)
     end
