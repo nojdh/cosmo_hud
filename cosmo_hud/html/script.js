@@ -19,7 +19,7 @@ $(document).ready(function () {
 
   HungerIndicator = new ProgressBar.Circle("#HungerIndicator", {
     color: "rgb(255, 164, 59)",
-    trailColor: "rgb(165, 116, 60)",
+    trailColor: "#4a4a4a",
     strokeWidth: 10,
     trailWidth: 10,
     duration: 250,
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
   ThirstIndicator = new ProgressBar.Circle("#ThirstIndicator", {
     color: "rgb(0, 140, 255)",
-    trailColor: "rgb(0, 85, 155)",
+    trailColor: "#4a4a4a",
     strokeWidth: 10,
     trailWidth: 10,
     duration: 250,
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   StressIndicator = new ProgressBar.Circle("#StressIndicator", {
     color: "rgb(255, 74, 104)",
-    trailColor: "rgb(102, 27, 40)",
+    trailColor: "#4a4a4a",
     strokeWidth: 10,
     trailWidth: 10,
     duration: 250,
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   OxygenIndicator = new ProgressBar.Circle("#OxygenIndicator", {
     color: "rgb(0, 140, 255)",
-    trailColor: "rgb(0, 85, 155)",
+    trailColor: "#4a4a4a",
     strokeWidth: 10,
     trailWidth: 10,
     duration: 250,
@@ -55,7 +55,7 @@ $(document).ready(function () {
 
   StaminaIndicator = new ProgressBar.Circle("#StaminaIndicator", {
     color: "#FDD023",
-    trailColor: "#b38b01",
+    trailColor: "#4a4a4a",
     strokeWidth: 10,
     trailWidth: 10,
     duration: 250,
