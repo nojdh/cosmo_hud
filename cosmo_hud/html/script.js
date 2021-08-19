@@ -211,7 +211,7 @@ window.addEventListener("message", function (event) {
     $("#hp-icon").removeClass("fa-heart");
     $("#hp-icon").addClass("fa-skull");
   } else if (data.hp > 0) {
-    HealthIndicator.trail.setAttribute("stroke", "green");
+    /*HealthIndicator.trail.setAttribute("stroke", "green");*/
     $("#hp-icon").removeClass("fa-skull");
     $("#hp-icon").addClass("fa-heart");
   }
