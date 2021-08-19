@@ -1,5 +1,6 @@
 -- ESX Library
 ESX = nil
+
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -11,11 +12,9 @@ end)
 RegisterNetEvent("cosmo_hud:onTick")
 AddEventHandler("cosmo_hud:onTick", function(status)
     local playerPed  = PlayerPedId()
-	local prevHealth = GetEntityHealth(playerPed)
-	local health     = prevHealth
 
     TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
-        hunger = status.val / 10000 
+        hunger = status.val / 10000
     end)
     
     TriggerEvent('esx_status:getStatus', 'thirst', function(status) 
@@ -27,13 +26,17 @@ AddEventHandler("cosmo_hud:onTick", function(status)
             stress = status.val / 10000 
         end)
     end
+
+    if hunger == 0 or thirst == 0 then
+        ForcePedMotionState(playerPed, 1110276645, 0, 0, 0)
+    end
 end)
 
 -- Principal Loop
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(Config['TickTime'])
-
+        
         -- Player ID
         if (Config['ShowServerID']) then
             SendNUIMessage({
@@ -153,7 +156,7 @@ Citizen.CreateThread(function()
     local y = -0.015
     local w = 0.16
     local h = 0.25
-    local minimap = RequestScaleformMovie("minimap")
+    
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
     AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
@@ -169,11 +172,11 @@ Citizen.CreateThread(function()
     SetMapZoomDataLevel(3, 12.3, 0.9, 0.08, 0.0, 0.0) -- Level 3
     SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0) -- Level 4
 
-    Wait(5000)
+    local minimap = RequestScaleformMovie("minimap")
     SetBigmapActive(true, false)
     Wait(0)
     SetBigmapActive(false, false)
-
+    
     while true do
         Wait(0)
         BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
@@ -185,19 +188,15 @@ Citizen.CreateThread(function()
 end)
 
 -- Microphone
-function Voicelevel(val)
+AddEventHandler("SaltyChat_VoiceRangeChanged", function(voiceRange, index, availableVoiceRanges)
     SendNUIMessage({
         action = "voice_level", 
-        voicelevel = val,
+        voicelevel = index
     })
-end
+end)
 
-function isTalking(talk)
+AddEventHandler("SaltyChat_TalkStateChanged", function(isTalking)
     SendNUIMessage({
-        talking = talk
+        talking = isTalking
     })
-end
-
--- Exports
-exports('Voicelevel', Voicelevel)
-exports('isTalking', isTalking)
+end)
