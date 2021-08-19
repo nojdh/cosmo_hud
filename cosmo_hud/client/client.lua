@@ -184,6 +184,7 @@ Citizen.CreateThread(function()
         EndScaleformMovieMethod()
         BeginScaleformMovieMethod(minimap, 'HIDE_SATNAV')
         EndScaleformMovieMethod()
+        SetBlipAlpha(GetNorthRadarBlip(), 0)
     end
 end)
 
