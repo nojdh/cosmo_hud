@@ -68,36 +68,9 @@ end)
 
 ## Setup voice indicator w/SaltyChat
 1. Install [SaltyChat](https://github.com/saltminede/saltychat-fivem)
-2. Open the solution file (`saltychat/SaltyChat-FiveM.sln`) with Visual Studio 2019
-3. Once Visual Studio has opened, double click on the `VoiceManager.cs` under the `SaltyClient`:
-![What to click on 1](https://i.imgur.com/wRjsgZq.jpg)
-4. Open the `Methods (Proximity)` region
-5. Replace the if where the condition is `isTalking` with:
-```
-if (isTalking) 
-{
-    Exports["cosmo_hud"].isTalking(isTalking);
-    API.PlayFacialAnim(Game.PlayerPed.Handle, "mic_chatter", "mp_facial");
-}
-else 
-{
-    Exports["cosmo_hud"].isTalking(isTalking);
-    API.PlayFacialAnim(Game.PlayerPed.Handle, "mood_normal_1", "facials@gen_male@variations@normal");
-} 
-```
-6. Move to the function below, which is called `public void ToggleVoiceRange()`
-7. You'll need to add another export underneath this line at 1077:
-```
-1077          BaseScript.TriggerServerEvent(Event.SaltyChat_SetVoiceRange, this.VoiceRange);
-
-to
-
-1077          BaseScript.TriggerServerEvent(Event.SaltyChat_SetVoiceRange, this.VoiceRange);
-1078          Exports["cosmo_hud"].Voicelevel(this.VoiceRange);
-```
-8. Build the solution as explained by the SaltyChat team
-9. Adjust the variables inside the SaltyChat config file
-10. You're set!
+2. Follow the SaltyChat installation guide
+3. NO MORE EXPORTS! 😎
+4. You're set!
 
 ## Setup voice indicator w/TokoVoIP
 1. Install [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
