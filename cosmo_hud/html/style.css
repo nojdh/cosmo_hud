@@ -108,7 +108,7 @@ body {
   height: 5vh !important;
   position: absolute;
   font-size: 5vh;
-  left: 22.8vh;
+  left: 24.8vh;
   bottom: 5.6vh;
   background: rgba(27, 27, 27, 0.336);
   transform: rotate(-180deg);
@@ -132,7 +132,7 @@ body {
   height: 3vh !important;
   color: white;
   position: absolute;
-  left: 20.4vh;
+  left: 22.4vh;
   bottom: 4.2vh;
   background: rgba(27, 27, 27, 0.336);
   transform: rotate(-180deg);
