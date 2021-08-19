@@ -3,23 +3,27 @@ game 'gta5'
 
 name 'cosmo_hud'
 description 'cosmo_hud for fivem, uses library from loading.io'
-author 'CosmoKramer | lilfraae'
-version "1.2"
+author 'lilfraae'
+version "1.5"
 
-ui_page 'html/ui.html'
+ui_page 'nui/ui.html'
 
 files {
-    'html/ui.html',
-    'html/script.js',
-    'html/loading-bar.js',
-    'html/style.css',
-    'stream/*',
-}
-
-shared_scripts {
-    'config/config.lua'
+    'nui/ui.html',
+    'nui/script.js',
+    'nui/loading-bar.js',
+    'nui/style.css',
+    'stream/*'
 }
 
 client_scripts {
-    'client/client.lua',
+    'client/cl_script.lua'
+}
+
+server_scripts {
+    'server/sv_script.lua'
+}
+
+shared_scripts {
+    'config.lua'
 }
