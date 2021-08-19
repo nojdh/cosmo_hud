@@ -1,18 +1,18 @@
 $(document).ready(function () {
   HealthIndicator = new ProgressBar.Circle("#HealthIndicator", {
     color: "rgb(0, 182, 91)",
-    trailColor: "green",
-    strokeWidth: 10,
-    trailWidth: 10,
+    trailColor: "#4a4a4a",
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
 
   ArmorIndicator = new ProgressBar.Circle("#ArmorIndicator", {
     color: "rgb(0,0,205)",
-    trailColor: "#4a4a4a",/*"rgb(124, 30, 30)",*/
-    strokeWidth: 10,
-    trailWidth: 10,
+    trailColor: "#4a4a4a",
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
@@ -20,8 +20,8 @@ $(document).ready(function () {
   HungerIndicator = new ProgressBar.Circle("#HungerIndicator", {
     color: "rgb(255, 164, 59)",
     trailColor: "#4a4a4a",
-    strokeWidth: 10,
-    trailWidth: 10,
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
@@ -29,8 +29,8 @@ $(document).ready(function () {
   ThirstIndicator = new ProgressBar.Circle("#ThirstIndicator", {
     color: "rgb(0, 140, 255)",
     trailColor: "#4a4a4a",
-    strokeWidth: 10,
-    trailWidth: 10,
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
@@ -38,8 +38,8 @@ $(document).ready(function () {
   StressIndicator = new ProgressBar.Circle("#StressIndicator", {
     color: "rgb(255, 74, 104)",
     trailColor: "#4a4a4a",
-    strokeWidth: 10,
-    trailWidth: 10,
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
@@ -47,8 +47,8 @@ $(document).ready(function () {
   OxygenIndicator = new ProgressBar.Circle("#OxygenIndicator", {
     color: "rgb(0, 140, 255)",
     trailColor: "#4a4a4a",
-    strokeWidth: 10,
-    trailWidth: 10,
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
@@ -56,8 +56,8 @@ $(document).ready(function () {
   StaminaIndicator = new ProgressBar.Circle("#StaminaIndicator", {
     color: "#FDD023",
     trailColor: "#4a4a4a",
-    strokeWidth: 10,
-    trailWidth: 10,
+    strokeWidth: 12,
+    trailWidth: 12,
     duration: 250,
     easing: "easeInOut",
   });
