@@ -9,8 +9,8 @@ $(document).ready(function () {
   });
 
   ArmorIndicator = new ProgressBar.Circle("#ArmorIndicator", {
-    color: "rgb(201, 36, 36)",
-    trailColor: "rgb(124, 30, 30)",
+    color: "rgb(0,0,205)",
+    trailColor: "#4a4a4a",/*"rgb(124, 30, 30)",*/
     strokeWidth: 10,
     trailWidth: 10,
     duration: 250,
@@ -133,11 +133,11 @@ window.addEventListener("message", function (event) {
   }
 
   // Light up path if talking
-  if (data.talking == 1) {
-    VoiceIndicator.path.setAttribute("stroke", "yellow");
-  } else if (data.talking == 0) {
+  if (data.talking == false) {
     VoiceIndicator.path.setAttribute("stroke", "white");
-  } 
+  } else if (data.talking == true) {
+    VoiceIndicator.path.setAttribute("stroke", "yellow");
+  }
 
   // Hide health if full
   if (data.showHealth == false) {
