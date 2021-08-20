@@ -69,6 +69,17 @@ body {
   bottom: 1.3vh;
 }
 
+.fa-belt {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 0.69vh;
+  bottom: 0.8vh;
+  width: 18px;
+  height: 18px;
+  content: url("belt.png");
+}
+
 .fa-tint {
   color: white;
   position: absolute;
@@ -86,7 +97,7 @@ body {
   }
 
 .fa-gas-pump {
- color: white;
+  color: white;
   font-size: 1vh;
   position: inherit;
   left: 1vh;
@@ -138,6 +149,16 @@ body {
   transform: rotate(-180deg);
 }
 
+#BeltCircle {
+  width: 3vh !important;
+  height: 3vh !important;
+  color: white;
+  position: absolute;
+  left: 28.0vh;
+  bottom: 10.8vh;
+  background: rgba(27, 27, 27, 0.336);
+}
+
 .flash {
   -webkit-animation: flash 1s;
 }
@@ -152,4 +173,20 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.pulse {
+  animation: pulse 1s;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 #BF360C;
+	}
+	50% {
+		box-shadow: 0 0 0 5px #bf360cb9;
+	}
+	100% {
+		box-shadow: 0 0 0 0 #bf360c85;
+	}
 }
