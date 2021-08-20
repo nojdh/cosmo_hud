@@ -71,6 +71,15 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
+  BeltCircle = new ProgressBar.Circle("#BeltCircle", {
+    color: "#4a4a4a",
+    trailColor: "#4a4a4a",
+    strokeWidth: 10,
+    duration: 100,
+    trailWidth: 10,
+    easing: "easeInOut",
+  });
+
   FuelIndicator = new ProgressBar.Circle("#FuelCircle", {
     color: "rgba(222, 222, 222, 1)",
     trailColor: "rgba(184, 184, 184, 0.082)",
@@ -111,6 +120,7 @@ window.addEventListener("message", function (event) {
     StressIndicator.animate(data.stress / 100);
     OxygenIndicator.animate(data.oxygen / 100);
     StaminaIndicator.animate(data.stamina / 100);
+    BeltCircle.animate(1.0);
   }
 
   // Get current voice level and animate path
@@ -211,7 +221,6 @@ window.addEventListener("message", function (event) {
     $("#hp-icon").removeClass("fa-heart");
     $("#hp-icon").addClass("fa-skull");
   } else if (data.hp > 0) {
-    /*HealthIndicator.trail.setAttribute("stroke", "green");*/
     $("#hp-icon").removeClass("fa-skull");
     $("#hp-icon").addClass("fa-heart");
   }
@@ -241,6 +250,21 @@ window.addEventListener("message", function (event) {
     $("#VehicleContainer").fadeIn();
   } else if (data.showSpeedo == false) {
     $("#VehicleContainer").fadeOut();
+  }
+
+  // Seatbelt section
+  if (data.showBelt == true) {
+    $("#BeltCircle").fadeIn();
+  } else if (data.showBelt == true) {
+    $("#BeltCircle").fadeOut();
+  }
+
+  if (data.isBeltOn == false) {
+    $("#BeltCircle").toggleClass("pulse");
+    BeltCircle.path.setAttribute("stroke", "#BF360C");
+  } else if (data.isBeltOn == true){
+    $("#BeltCircle").removeClass("pulse");
+    BeltCircle.path.setAttribute("stroke", "#00CC00");
   }
 
   // Hide ui if pause menu is open
