@@ -76,7 +76,7 @@ Citizen.CreateThread(function()
             local speed = math.floor(GetEntitySpeed(veh) * 3.6)
             local vehhash = GetEntityModel(veh)
             local maxspeed = GetVehicleModelMaxSpeed(vehhash) * 3.6
-            
+
             SendNUIMessage({
                 speed = speed, 
                 maxspeed = maxspeed
