@@ -10,6 +10,7 @@ ui_page 'nui/ui.html'
 
 files {
     'nui/ui.html',
+    'nui/belt.png',
     'nui/script.js',
     'nui/loading-bar.js',
     'nui/style.css',
