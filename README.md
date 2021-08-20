@@ -72,21 +72,6 @@ end)
 3. NO MORE EXPORTS! 😎
 4. You're set!
 
-## Setup seatbelt indicator w/Seatbelt
-1. Install [Seatbelt](https://github.com/TehRamsus/Seatbelt)
-2. Open `Seatbelt/client.lua`
-3. Go to line 73 and change the code like that:
-```
-74          Citizen.Wait(1)
-
-to
-
-74          TriggerEvent("cosmo_hud:isSeatbeltOn", SeatbeltON)
-75          Citizen.Wait(1)
-```
-4. And then underneath line 87 add the event trigger
-5. You're set!
-
 ## Setup voice indicator w/TokoVoIP -- NOT FOR THIS VERSION
 1. Install [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
 2. Go to `tokovoip_script/src`
@@ -121,6 +106,8 @@ end)
 ## Credits/Original Code
 * [nojdh](https://github.com/nojdh)
     * [cosmo_hud](https://github.com/nojdh/cosmo_hud)
+* [TehRamsus](https://github.com/TehRamsus)
+    * [Seatbelt](https://github.com/TehRamsus/Seatbelt)
 * [colored_map](https://forum.cfx.re/u/Antoine)
 * [PostalMap](https://github.com/ocrp/postal_map)
 * [Loading-Bar](https://loading.io/progress/)
