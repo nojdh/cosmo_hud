@@ -101,7 +101,7 @@ end)
 7. You're set!
 
 ## Known Bugs/Issues
-* When opening the phone the map gets bigger and goes out of the circle bounds.
+* Solved for now
 
 ## Credits/Original Code
 * [nojdh](https://github.com/nojdh)
