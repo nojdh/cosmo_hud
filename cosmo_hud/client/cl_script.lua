@@ -1,5 +1,6 @@
--- ESX Library
+-- Variables
 ESX = nil
+local beltStatus = false
 
 Citizen.CreateThread(function()
     while ESX == nil do
@@ -148,6 +149,7 @@ Citizen.CreateThread(function()
             hunger = hunger,
             thirst = thirst,
             stress = stress,
+            isBeltOn = beltStatus,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
             stamina = GetPlayerSprintTimeRemaining(PlayerId()) * 10,
         })
@@ -198,5 +200,14 @@ end)
 AddEventHandler("SaltyChat_TalkStateChanged", function(isTalking)
     SendNUIMessage({
         talking = isTalking
+    })
+end)
+
+-- Seatbelt events
+RegisterNetEvent("cosmo_hud:isSeatbeltOn")
+AddEventHandler("cosmo_hud:isSeatbeltOn", function(isOn)
+    beltStatus = isOn
+    SendNUIMessage({
+        isBeltOn = beltStatus
     })
 end)
