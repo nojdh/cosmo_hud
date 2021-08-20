@@ -5,4 +5,4 @@ Config.ShowStress = false -- set to true if you want a stress indicator
 Config.ShowSpeedO = true -- set to true if you want speedometer enabled
 Config.ShowServerID = true -- set to true if you want the player id enabled
 Config.ShowFuel = false -- set this to true if you want to show fuel (you need LegacyFuel)
-Config.ShowStamina = false -- set this to true to show stamina when sprinting
+Config.ShowStamina = true -- set this to true to show stamina in your hud

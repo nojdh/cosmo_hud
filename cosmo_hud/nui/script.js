@@ -54,7 +54,7 @@ $(document).ready(function () {
   });
 
   StaminaIndicator = new ProgressBar.Circle("#StaminaIndicator", {
-    color: "#FDD023",
+    color: "#ADD8E6",
     trailColor: "#4a4a4a",
     strokeWidth: 12,
     trailWidth: 12,
@@ -165,11 +165,8 @@ window.addEventListener("message", function (event) {
 
   // Show stamina if sprinting
   if (data.showStamina == true) {
-    $("#StaminaIndicator").fadeIn();
+    $("#StaminaIndicator").show();
   } else if (data.showStamina == false) {
-    $("#StaminaIndicator").fadeOut();
-  }
-  if (data.hideStamina == true) {
     $("#StaminaIndicator").hide();
   }
 

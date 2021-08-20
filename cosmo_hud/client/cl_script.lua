@@ -57,13 +57,9 @@ Citizen.CreateThread(function()
 
         -- Ped stamina while sprinting
         if Config.ShowStamina then
-            if IsPedSprinting(PlayerPedId()) then
-                SendNUIMessage({showStamina = true})
-            else
-                SendNUIMessage({showStamina = false})
-            end
+            SendNUIMessage({showStamina = true})
         else
-            SendNUIMessage({hideStamina = true})
+            SendNUIMessage({showStamina = true})
         end
         
         -- Entity health

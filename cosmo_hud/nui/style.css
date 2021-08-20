@@ -45,12 +45,15 @@ body {
   bottom: 1.2vh;
 }
 
-.fa-bolt {
+.fa-o2 {
   color: white;
   position: absolute;
   font-size: 1.6vh;
-  left: 1.5vh;
-  bottom: 1.2vh;
+  left: 0.79vh;
+  bottom: 0.78vh;
+  width: 26px;
+  height: 26px;
+  content: url("o2.png");
 }
 
 .fa-brain, .fa-headset  {
