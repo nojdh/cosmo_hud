@@ -183,11 +183,6 @@ window.addEventListener("message", function (event) {
   } else if (data.showStress == true) {
     $("#StressIndicator").show();
   }
-  if (data.stress == 0) {
-    $("#StressIndicator").fadeOut();
-  } else if (data.stress > 0) {
-    $("#StressIndicator").fadeIn();
-  }
 
   // Hide fuel if disabled
   if (data.showFuel == true) {

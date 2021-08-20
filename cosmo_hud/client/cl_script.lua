@@ -95,10 +95,10 @@ Citizen.CreateThread(function()
         end
 
         -- Stress config
-        if not Config.ShowStress then
-            SendNUIMessage({showStress = false})
-        else
+        if Config.ShowStress then
             SendNUIMessage({showStress = true})
+        else
+            SendNUIMessage({showStress = false})
         end
 
         -- Pause menu checks
