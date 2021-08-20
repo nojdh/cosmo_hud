@@ -9,17 +9,17 @@ version "1.5"
 ui_page 'nui/ui.html'
 
 files {
+    'nui/css/*',
+    'nui/img/*',
+    'nui/sounds/*',
+    'nui/js/*',
     'nui/ui.html',
-    'nui/belt.png',
-    'nui/o2.png',
-    'nui/script.js',
-    'nui/loading-bar.js',
-    'nui/style.css',
     'stream/*'
 }
 
 client_scripts {
-    'client/cl_script.lua'
+    'client/cl_script.lua',
+    'client/addons/seatbelt.lua'
 }
 
 server_scripts {
