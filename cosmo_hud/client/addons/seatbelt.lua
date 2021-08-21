@@ -67,6 +67,7 @@ Citizen.CreateThread(function()
 
                     isUiOpen = true
                 else
+                    TriggerEvent("cosmo_hud:isSeatbeltOn", SeatbeltON) 
                     if Config.Sounds then
                         playSound("unbuckle", Config.Volume)
                     end
