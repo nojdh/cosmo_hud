@@ -67,8 +67,6 @@ Citizen.CreateThread(function()
 
                     isUiOpen = true
                 else
-                    TriggerEvent("cosmo_hud:isSeatbeltOn", SeatbeltON)
-
                     if Config.Sounds then
                         playSound("unbuckle", Config.Volume)
                     end
@@ -79,6 +77,7 @@ Citizen.CreateThread(function()
         elseif InVehicle then
             InVehicle = false
             SeatbeltON = false
+            TriggerEvent("cosmo_hud:isSeatbeltOn", SeatbeltON)
             speedBuffer[1], speedBuffer[2] = 0.0, 0.0
 
             if isUiOpen == true and not IsPlayerDead(PlayerId()) then
