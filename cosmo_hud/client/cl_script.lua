@@ -172,6 +172,7 @@ Citizen.CreateThread(function()
     SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0) -- Level 4
 
     local minimap = RequestScaleformMovie("minimap")
+    Wait(5000)
     SetBigmapActive(true, false)
     Wait(0)
     SetBigmapActive(false, false)
