@@ -99,7 +99,7 @@ $(document).ready(function () {
   });
 
   VoiceIndicator = new ProgressBar.Circle("#VoiceIndicator", {
-    color: "#4a4a4a",
+    color: "darkgrey",
     trailColor: "#4a4a4a",
     strokeWidth: 12,
     trailWidth: 12,
@@ -144,7 +144,7 @@ window.addEventListener("message", function (event) {
 
   // Light up path if talking
   if (data.talking == false) {
-    VoiceIndicator.path.setAttribute("stroke", "white");
+    VoiceIndicator.path.setAttribute("stroke", "darkgrey");
   } else if (data.talking == true) {
     VoiceIndicator.path.setAttribute("stroke", "yellow");
   }
