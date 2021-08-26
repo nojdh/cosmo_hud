@@ -10,6 +10,7 @@ ui_page 'nui/ui.html'
 
 files {
     'nui/css/*',
+    'nui/font/*',
     'nui/img/*',
     'nui/sounds/*',
     'nui/js/*',

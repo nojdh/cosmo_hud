@@ -89,17 +89,8 @@ $(document).ready(function () {
     easing: "easeInOut",
   });
 
-  PlayerServerID = new ProgressBar.Circle("#ID", {
-    color: "#000000",
-    trailColor: "#FF0046",
-    strokeWidth: 12,
-    trailWidth: 12,
-    duration: 250,
-    easing: "easeInOut",
-  });
-
   VoiceIndicator = new ProgressBar.Circle("#VoiceIndicator", {
-    color: "darkgrey",
+    color: "white",
     trailColor: "#4a4a4a",
     strokeWidth: 12,
     trailWidth: 12,
@@ -144,7 +135,7 @@ window.addEventListener("message", function (event) {
 
   // Light up path if talking
   if (data.talking == false) {
-    VoiceIndicator.path.setAttribute("stroke", "darkgrey");
+    VoiceIndicator.path.setAttribute("stroke", "white");
   } else if (data.talking == true) {
     VoiceIndicator.path.setAttribute("stroke", "yellow");
   }
