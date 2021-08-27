@@ -1,7 +1,7 @@
 $(document).ready(function () {
   HealthIndicator = new ProgressBar.Circle("#HealthIndicator", {
     color: "rgb(0, 182, 91)",
-    trailColor: "#4a4a4a",
+    trailColor: "green",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
@@ -9,8 +9,8 @@ $(document).ready(function () {
   });
 
   ArmorIndicator = new ProgressBar.Circle("#ArmorIndicator", {
-    color: "rgb(0,0,205)",
-    trailColor: "#4a4a4a",
+    color: "#2762b9",
+    trailColor: "#1f2f45",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
   HungerIndicator = new ProgressBar.Circle("#HungerIndicator", {
     color: "rgb(255, 164, 59)",
-    trailColor: "#4a4a4a",
+    trailColor: "rgb(158, 102, 36)",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
   ThirstIndicator = new ProgressBar.Circle("#ThirstIndicator", {
     color: "rgb(0, 140, 255)",
-    trailColor: "#4a4a4a",
+    trailColor: "rgb(0, 64, 117)",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   OxygenIndicator = new ProgressBar.Circle("#OxygenIndicator", {
     color: "rgb(0, 140, 255)",
-    trailColor: "#4a4a4a",
+    trailColor: "rgb(0, 91, 166)",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
@@ -55,7 +55,7 @@ $(document).ready(function () {
 
   StaminaIndicator = new ProgressBar.Circle("#StaminaIndicator", {
     color: "#ADD8E6",
-    trailColor: "#4a4a4a",
+    trailColor: "rgb(115, 148, 158)",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
@@ -204,7 +204,7 @@ window.addEventListener("message", function (event) {
     $("#hp-icon").removeClass("fa-heart");
     $("#hp-icon").addClass("fa-skull");
   } else if (data.hp > 0) {
-    HealthIndicator.trail.setAttribute("stroke", "#4a4a4a");
+    HealthIndicator.trail.setAttribute("stroke", "green");
     $("#hp-icon").removeClass("fa-skull");
     $("#hp-icon").addClass("fa-heart");
   }
