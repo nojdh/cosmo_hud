@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   StressIndicator = new ProgressBar.Circle("#StressIndicator", {
     color: "red",
-    trailColor: "#4a4a4a",
+    trailColor: "#6A0000",
     strokeWidth: 12,
     trailWidth: 12,
     duration: 250,
