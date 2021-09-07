@@ -12,7 +12,7 @@ end)
 -- Principal Event
 RegisterNetEvent("cosmo_hud:onTick")
 AddEventHandler("cosmo_hud:onTick", function(status)
-    local playerPed  = PlayerPedId()
+    local playerPed = PlayerPedId()
 
     TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
         hunger = status.val / 10000
@@ -37,7 +37,8 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(Config.TickTime)
-        
+        local pedID = PlayerPedId()
+
         -- Player ID
         if Config.ShowServerID then
             SendNUIMessage({
@@ -48,8 +49,8 @@ Citizen.CreateThread(function()
             SendNUIMessage({pid = false})
         end
 
-        -- Ped xxygen underwater
-        if IsPedSwimmingUnderWater(PlayerPedId()) then
+        -- Ped oxygen underwater
+        if IsPedSwimmingUnderWater(pedID) then
             SendNUIMessage({showOxygen = true})
         else
             SendNUIMessage({showOxygen = false})
@@ -63,19 +64,23 @@ Citizen.CreateThread(function()
         end
         
         -- Entity health
-        if ((GetEntityHealth(PlayerPedId()) - 100) >= 100) then
+        if ((GetEntityHealth(pedID) - 100) >= 100) then
             SendNUIMessage({showHealth = false})
         else
             SendNUIMessage({showHealth = true})
         end
 
         -- Vehicle config while entity inside
-        if IsPedInAnyVehicle(PlayerPedId(), true) then
+        if IsPedInAnyVehicle(pedID, true) then
             SetRadarZoom(1000)
-            local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
+            local veh = GetVehiclePedIsUsing(pedID, false)
             local speed = math.floor(GetEntitySpeed(veh) * 3.6)
             local vehhash = GetEntityModel(veh)
             local maxspeed = GetVehicleModelMaxSpeed(vehhash) * 3.6
+
+            if speed >= 200 then
+                TriggerServerEvent('cosmo_hud:gainStress', math.random(500, 2500))
+            end
 
             SendNUIMessage({
                 speed = speed, 
@@ -85,11 +90,11 @@ Citizen.CreateThread(function()
 
         -- SpeedO gonfig
         if Config.ShowSpeedO then
-            if IsPedInAnyVehicle(PlayerPedId(), false) 
-            and not IsPedInFlyingVehicle(PlayerPedId()) 
-            and not IsPedInAnySub(PlayerPedId()) then
+            if IsPedInAnyVehicle(pedID, false) 
+            and not IsPedInFlyingVehicle(pedID) 
+            and not IsPedInAnySub(pedID) then
                 SendNUIMessage({showSpeedo = true})
-            elseif not IsPedInAnyVehicle(PlayerPedId(), false) then
+            elseif not IsPedInAnyVehicle(pedID, false) then
                 SendNUIMessage({showSpeedo = false})
             end
         end
@@ -116,8 +121,8 @@ Citizen.CreateThread(function()
         end
 
         if Config.ShowFuel then
-            if IsPedInAnyVehicle(PlayerPedId(), true) then
-                local veh = GetVehiclePedIsUsing(PlayerPedId(), false)
+            if IsPedInAnyVehicle(pedID, true) then
+                local veh = GetVehiclePedIsUsing(pedID, false)
                 local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
                 SendNUIMessage({
                     action = "update_fuel",
@@ -128,7 +133,7 @@ Citizen.CreateThread(function()
 
         -- Radar config
         if not Config.ShowRadar then
-            if IsPedInAnyVehicle(PlayerPedId(-1), false) then
+            if IsPedInAnyVehicle(pedID, false) then
                 DisplayRadar(true)
             else
                 DisplayRadar(false)
@@ -137,11 +142,25 @@ Citizen.CreateThread(function()
             DisplayRadar(true)
         end
 
+        -- Stress test
+        if stress == 100 then             
+            Citizen.Wait(500)
+            forRepeat()
+        elseif stress >= 50 then
+            Citizen.Wait(Config.TickTime)
+            forRepeat()
+        end
+
+        -- Stress while holding a pistol
+        if IsPedArmed(pedID, 4) then
+            TriggerServerEvent('cosmo_hud:gainStress', math.random(500, 1000))
+        end
+        
         -- Information sent to JavaScript
         SendNUIMessage({
             action = "update_hud",
-            hp = GetEntityHealth(PlayerPedId()) - 100,
-            armor = GetPedArmour(PlayerPedId()),
+            hp = GetEntityHealth(pedID) - 100,
+            armor = GetPedArmour(pedID),
             hunger = hunger,
             thirst = thirst,
             stress = stress,
@@ -207,4 +226,18 @@ AddEventHandler("cosmo_hud:isSeatbeltOn", function(isOn)
     SendNUIMessage({
         isBeltOn = beltStatus
     })
+end)
+
+-- Stress function that makes you close your eyes when stress is too high
+function forRepeat(RepeatTimes)
+    Citizen.Wait(750)
+    DoScreenFadeOut(200)
+    Citizen.Wait(Config.TickTime)
+    DoScreenFadeIn(200)
+end
+
+-- Updated stress from server
+RegisterNetEvent('cosmo_hud:UpdateStress')
+AddEventHandler('cosmo_hud:UpdateStress', function(newStress)
+    stress = newStress
 end)
