@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 name 'cosmo_hud'
-description 'cosmo_hud for fivem, uses library from loading.io'
+description 'Clean & Simple hud for FiveM inspired by NoPixel 3.0'
 author 'lilfraae'
 version "1.5"
 
