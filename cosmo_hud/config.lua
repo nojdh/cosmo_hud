@@ -10,7 +10,7 @@ Config.ShowRadar = false
     Stress // Set this flag to true if you'd like to show the stress indicator. 
     This needs further implementation.
 ]]
-Config.ShowStress = false
+Config.ShowStress = true
 
 -- SpeedOmeter // Set this flag to false if you'd like to not show information about speed, fuel & seatbelt
 Config.ShowSpeedO = true
