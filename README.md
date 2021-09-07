@@ -16,8 +16,8 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 
 ## Requirements
 * Required:
-    * [esx_status](https://github.com/esx-framework/esx_status)
-    * [esx_basicneeds](https://github.com/esx-framework/esx_basicneeds)
+    * [esx_status](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_status)
+    * [esx_basicneeds](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_basicneeds)
 * Optional:
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
     * [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
@@ -71,6 +71,76 @@ end)
 2. Follow the SaltyChat installation guide
 3. NO MORE EXPORTS! 😎
 4. You're set!
+
+## Setup stress system w/esx_basicneeds
+1. Install [esx_basicneeds](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_basicneeds)
+2. Open the `main.lua` client file
+3. Replace this function:
+```
+AddEventHandler('esx_basicneeds:resetStatus', function()
+	TriggerEvent('esx_status:set', 'hunger', 500000)
+	TriggerEvent('esx_status:set', 'thirst', 500000)
+	TriggerEvent('esx_status:set', 'stress', 0)
+end)
+
+to
+
+AddEventHandler('esx_basicneeds:resetStatus', function()
+	--TriggerEvent('esx_status:set', 'hunger', 500000)
+	--TriggerEvent('esx_status:set', 'thirst', 500000)
+	TriggerEvent('esx_status:set', 'stress', 0)
+end)
+```
+4. Then replace this function:
+```
+RegisterNetEvent('esx_basicneeds:healPlayer')
+AddEventHandler('esx_basicneeds:healPlayer', function()
+	-- restore hunger & thirst
+	TriggerEvent('esx_status:set', 'hunger', 1000000)
+	TriggerEvent('esx_status:set', 'thirst', 1000000)
+
+	-- restore hp
+	local playerPed = PlayerPedId()
+	SetEntityHealth(playerPed, GetEntityMaxHealth(playerPed))
+end)
+
+to
+
+RegisterNetEvent('esx_basicneeds:healPlayer')
+AddEventHandler('esx_basicneeds:healPlayer', function()
+	-- restore hunger & thirst
+	TriggerEvent('esx_status:set', 'hunger', 1000000)
+	TriggerEvent('esx_status:set', 'thirst', 1000000)
+	TriggerEvent('esx_status:set', 'stress', 0)
+
+	-- restore hp
+	local playerPed = PlayerPedId()
+	SetEntityHealth(playerPed, GetEntityMaxHealth(playerPed))
+end)
+```
+5. Go to line 46 and add this piece of code underneath this one:
+```
+TriggerEvent('esx_status:registerStatus', 'thirst', 1000000, '#0C98F1', function(status)
+	return Config.Visible
+end, function(status)
+	status.remove(75)
+end)
+
+to
+
+TriggerEvent('esx_status:registerStatus', 'thirst', 1000000, '#0C98F1', function(status)
+	return Config.Visible
+end, function(status)
+	status.remove(75)
+end)
+
+TriggerEvent('esx_status:registerStatus', 'stress', 1000000, '#cadfff', function(status)
+	return Config.Visible
+end, function(status)
+	status.add(0) -- Set this to 1 if you want your player to get stress even when is idling
+end)
+```
+6. You're set!
 
 ## Setup voice indicator w/TokoVoIP -- NOT FOR THIS VERSION
 1. Install [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
