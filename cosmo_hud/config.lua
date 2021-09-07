@@ -8,7 +8,8 @@ Config.ShowRadar = false
 
 --[[ 
     Stress // Set this flag to true if you'd like to show the stress indicator. 
-    This needs further implementation.
+    This option now unlock a series of functions and a server event.
+    So if you haven't setup the stress system in basicneeds turn this off!
 ]]
 Config.ShowStress = true
 
