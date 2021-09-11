@@ -8,14 +8,14 @@ Citizen.CreateThread(function()
                 local veh = GetVehiclePedIsUsing(pedID, false)
                 local speed = math.floor(GetEntitySpeed(veh) * 3.6)
 
-                if speed >= 200 then
-                    TriggerServerEvent('cosmo_hud:gainStress', math.random(500, 2500))
+                if speed >= 220 then
+                    TriggerServerEvent('cosmo_hud:gainStress', 250)
                 end
             end
 
             -- If ped is holding a pistol adds a random stress amount between 500 and 1000
             if IsPedArmed(pedID, 4) then
-                TriggerServerEvent('cosmo_hud:gainStress', math.random(500, 1000))
+                TriggerServerEvent('cosmo_hud:gainStress', math.random(250, 500))
             end
         end  
     end
