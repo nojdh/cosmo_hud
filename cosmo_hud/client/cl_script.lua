@@ -24,7 +24,7 @@ AddEventHandler("cosmo_hud:onTick", function(status)
     
     if Config.ShowStress then
         TriggerEvent('esx_status:getStatus', 'stress', function(status) 
-            stress = status.val / 10000 
+            stress = status.val / 10000
         end)
     end
     
