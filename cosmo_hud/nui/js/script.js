@@ -253,9 +253,9 @@ window.addEventListener("message", function (event) {
 
   // Hide ui if pause menu is open
   if (data.showUi == false) {
-    $(".container").hide();
+    $(".container").fadeOut();
   } else if (data.showUi == true) {
-    $(".container").show();
+    $(".container").fadeIn();
   }
 
   // PlayerID
