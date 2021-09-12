@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
 
             -- If ped is holding a pistol adds a random stress amount between 500 and 1000
             if IsPedArmed(pedID, 4) then
-                TriggerServerEvent('cosmo_hud:gainStress', math.random(250, 500))
+                TriggerServerEvent('cosmo_hud:gainStress', 100)
             end
         end  
     end
