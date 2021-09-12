@@ -10,8 +10,10 @@ Config.ShowRadar = false
     Stress // Set this flag to true if you'd like to show the stress indicator. 
     This option now unlock a series of functions and a server event.
     So if you haven't setup the stress system in basicneeds turn this off!
+    Config.MinStressEffect = Set minimum stress before having the effects.
 ]]
 Config.ShowStress = true
+Config.MinStressEffect = 50
 
 -- SpeedOmeter // Set this flag to false if you'd like to not show information about speed, fuel & seatbelt
 Config.ShowSpeedO = true
