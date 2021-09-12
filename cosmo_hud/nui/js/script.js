@@ -113,7 +113,7 @@ window.addEventListener("message", function (event) {
     StaminaIndicator.animate(data.stamina / 100);
     BeltCircle.animate(1.0);
   }
-
+  
   // Get current voice level and animate path
   if (data.action == "voice_level") {
     switch (data.voicelevel) {
@@ -168,11 +168,11 @@ window.addEventListener("message", function (event) {
     $("#ArmorIndicator").fadeIn();
   }
 
-  // Hide stress if disabled
+  // Stress related config
   if (data.showStress == false) {
-    $("#StressIndicator").hide();
+    $("#StressIndicator").fadeOut();
   } else if (data.showStress == true) {
-    $("#StressIndicator").show();
+    $("#StressIndicator").fadeIn();
   }
 
   // Hide fuel if disabled
