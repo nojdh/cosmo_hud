@@ -94,7 +94,7 @@ Citizen.CreateThread(function()
 
         -- Stress config
         if Config.ShowStress then
-            if stress > 0 then
+            if stress > 1 then
                 SendNUIMessage({showStress = true})
             else
                 SendNUIMessage({showStress = false})
@@ -147,7 +147,7 @@ Citizen.CreateThread(function()
                 forRepeat()
             end
         end
-
+        
         -- Information sent to JavaScript
         SendNUIMessage({
             action = "update_hud",
@@ -222,7 +222,7 @@ end)
 
 if Config.ShowStress then
     -- Stress function that makes you close your eyes when stress is too high
-    function forRepeat(RepeatTimes)
+    function forRepeat()
         Citizen.Wait(750)
         DoScreenFadeOut(200)
         Citizen.Wait(Config.TickTime)
