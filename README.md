@@ -134,7 +134,7 @@ end, function(status)
 	status.remove(75)
 end)
 
-TriggerEvent('esx_status:registerStatus', 'stress', 1000000, '#cadfff', function(status)
+TriggerEvent('esx_status:registerStatus', 'stress', 0, '#cadfff', function(status)
 	return Config.Visible
 end, function(status)
 	status.add(0) -- Set this to 1 if you want your player to get stress even when is idling
