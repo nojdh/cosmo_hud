@@ -221,8 +221,7 @@ window.addEventListener("message", function (event) {
 
   if (data.speed > 0) {
     $("#SpeedIndicator").text(data.speed);
-    let multiplier = data.maxspeed * 0.1;
-    let SpeedoLimit = data.maxspeed + multiplier;
+    let SpeedoLimit = 500;
     Speedometer.animate(data.speed / SpeedoLimit);
     Speedometer.path.setAttribute("stroke", "white");
   } else if (data.speed == 0) {
