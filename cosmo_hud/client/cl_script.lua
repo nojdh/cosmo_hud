@@ -24,7 +24,7 @@ AddEventHandler("cosmo_hud:onTick", function(status)
     
     if Config.ShowStress then
         TriggerEvent('esx_status:getStatus', 'stress', function(status) 
-            stress = status.val / 10000
+            stress = status.val / 10000 
         end)
     end
     
@@ -60,7 +60,7 @@ Citizen.CreateThread(function()
         if Config.ShowStamina then
             SendNUIMessage({showStamina = true})
         else
-            SendNUIMessage({showStamina = true})
+            SendNUIMessage({showStamina = false})
         end
         
         -- Entity health
@@ -94,9 +94,11 @@ Citizen.CreateThread(function()
 
         -- Stress config
         if Config.ShowStress then
-            SendNUIMessage({showStress = true})
-        else
-            SendNUIMessage({showStress = false})
+            if stress > 0 then
+                SendNUIMessage({showStress = true})
+            else
+                SendNUIMessage({showStress = false})
+            end
         end
 
         -- Pause menu checks
@@ -137,15 +139,15 @@ Citizen.CreateThread(function()
 
         -- Stress config
         if Config.ShowStress then
-            if stress >= 50 then
+            if math.floor(stress) >= Config.MinStressEffect then
                 Citizen.Wait(10000)
                 forRepeat()
-            elseif stress == 100 then
+            elseif math.floor(stress) == 100 then
                 Citizen.Wait(500)
                 forRepeat()
             end
         end
-        
+
         -- Information sent to JavaScript
         SendNUIMessage({
             action = "update_hud",
