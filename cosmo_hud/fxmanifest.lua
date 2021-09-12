@@ -4,7 +4,7 @@ game 'gta5'
 name 'cosmo_hud'
 description 'Clean & Simple hud for FiveM inspired by NoPixel 3.0'
 author 'lilfraae'
-version "1.5"
+version "1.8"
 
 ui_page 'nui/ui.html'
 
