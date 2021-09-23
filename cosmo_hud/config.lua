@@ -1,8 +1,5 @@
 Config = {}
 
--- Version // Needed for update checks
-Config.Version = 1.8
-
 -- TickTime // Time before each execution of the thread
 Config.TickTime = 1000
 
