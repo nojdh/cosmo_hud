@@ -7,21 +7,23 @@ end)
 -- Version check function
 Citizen.CreateThread(function()
     updatePath = "/xxpromw3mtxx/cosmo_hud"
-    resourceName = "cosmo_hud ("..GetCurrentResourceName()..")"
+    resourceName = string.upper(GetCurrentResourceName())
     
-    function checkVersion(err,responseText, headers)    
-        if Config.Version ~= responseText and tonumber(Config.Version) < tonumber(responseText) then
+    function checkVersion(err,responseText, headers)
+        curVersion = LoadResourceFile(GetCurrentResourceName(), ".version")
+
+        if curVersion ~= responseText and tonumber(curVersion) < tonumber(responseText) then
             print("\n###############################")
-            print("\n"..resourceName.." is outdated, should be:\n"..responseText.."is:\n"..Config.Version.."\nplease update it from https://github.com"..updatePath.."/releases")
+            print("\n"..resourceName.." is outdated, should be:\n"..responseText.."is:\n"..curVersion.."\nplease update it from https://github.com"..updatePath.."/releases")
             print("\n###############################")
-        elseif tonumber(Config.Version) > tonumber(responseText) then
+        elseif tonumber(curVersion) > tonumber(responseText) then
             print("You somehow skipped a few versions of "..resourceName.." or the git went offline, if it's still online i advise you to update ( or downgrade? )")
         else
             print("^2"..resourceName.." is up to date!^0")
         end
     end
     
-    PerformHttpRequest("https://raw.githubusercontent.com"..updatePath.."/main/version", checkVersion, "GET")
+    PerformHttpRequest("https://raw.githubusercontent.com"..updatePath.."/main/.version", checkVersion, "GET")
 end)
 
 -- Stress related option
