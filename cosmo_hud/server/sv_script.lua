@@ -5,7 +5,7 @@ TriggerEvent('esx:getSharedObject', function(obj)
 end)
 
 -- Version check function
-PerformHttpRequest("https://raw.githubusercontent.com/xxpromw3mtxx/cosmo_hud/main/version", function(err, text, headers)
+PerformHttpRequest("https://raw.githubusercontent.com/xxpromw3mtxx/cosmo_hud/main/.version", function(err, text, headers)
     Citizen.Wait(2000)
     local curVer = GetResourceMetadata(GetCurrentResourceName(), "version")
 
