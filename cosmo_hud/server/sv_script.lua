@@ -10,7 +10,7 @@ Citizen.CreateThread(function()
     resourceName = string.upper(GetCurrentResourceName())
     
     function checkVersion(err,responseText, headers)
-        curVersion = LoadResourceFile(GetCurrentResourceName(), ".version")
+        curVersion = LoadResourceFile(GetCurrentResourceName(), "version")
 
         if curVersion ~= responseText and tonumber(curVersion) < tonumber(responseText) then
             print("\n###############################")
@@ -23,7 +23,7 @@ Citizen.CreateThread(function()
         end
     end
     
-    PerformHttpRequest("https://raw.githubusercontent.com"..updatePath.."/main/.version", checkVersion, "GET")
+    PerformHttpRequest("https://raw.githubusercontent.com"..updatePath.."/main/version", checkVersion, "GET")
 end)
 
 -- Stress related option
