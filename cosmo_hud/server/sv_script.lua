@@ -5,24 +5,24 @@ TriggerEvent('esx:getSharedObject', function(obj)
 end)
 
 -- Version check function
-Citizen.CreateThread(function()
-    resourceName = string.upper(GetCurrentResourceName())
-    
-    function checkVersion(err,responseText, headers)
-        curVersion = LoadResourceFile(GetCurrentResourceName(), ".version")
+PerformHttpRequest("https://raw.githubusercontent.com/xxpromw3mtxx/cosmo_hud/main/version", function(err, text, headers)
+    Citizen.Wait(2000)
+    local curVer = GetResourceMetadata(GetCurrentResourceName(), "version")
 
-        if curVersion ~= responseText and tonumber(curVersion) < tonumber(responseText) then
-            print("\n###############################")
-            print("\n"..resourceName.." is outdated, should be:\n"..responseText.."is:\n"..curVersion.."\nplease update it from https://github.com/xxpromw3mtxx/cosmo_hud/releases")
-            print("\n###############################")
-        elseif tonumber(curVersion) > tonumber(responseText) then
-            print("You somehow skipped a few versions of "..resourceName.." or the git went offline, if it's still online i advise you to update ( or downgrade? )")
+    if (text ~= nil) then
+        if (text ~= curVer) then
+            print '^1-----------------------------------------^0'
+            print '^1        UPDATE AVAILABLE COSMO_HUD       ^0'
+            print '^1          GET IT ON DISCORD NOW          ^0'
+            print '^1-----------------------------------------^0'
         else
-            print("^2"..resourceName.." is up to date!^0")
+            print("^2COSMO_HUD is up to date!^0")
         end
-    end
-    
-    PerformHttpRequest("https://raw.githubusercontent.com/xxpromw3mtxx/cosmo_hud/main/version", checkVersion, "GET")
+    else
+        print '^1----------------------------------------^0'
+        print '^1      ERROR GETTING ONLINE VERSION      ^0'
+        print '^1----------------------------------------^0'
+    end 
 end)
 
 -- Stress related option
