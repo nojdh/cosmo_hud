@@ -13,7 +13,7 @@ PerformHttpRequest("https://raw.githubusercontent.com/xxpromw3mtxx/cosmo_hud/mai
         if (text ~= curVer) then
             print '^1-----------------------------------------^0'
             print '^1        UPDATE AVAILABLE COSMO_HUD       ^0'
-            print '^1          GET IT ON DISCORD NOW          ^0'
+            print '^1          GET IT ON GITHUB NOW           ^0'
             print '^1-----------------------------------------^0'
         else
             print("^2COSMO_HUD is up to date!^0")
