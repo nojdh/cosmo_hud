@@ -20,9 +20,8 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
     * [esx_basicneeds](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_basicneeds)
 * Optional:
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
-    * [TokoVoIP](https://github.com/Itokoyamato/TokoVOIP_TS3)
     * [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
-    * [SaltyChat](https://github.com/saltminede/saltychat-fivem)
+    * [mumble-voip](https://github.com/Xxpromw3mtxX/mumble-voip-fivem)
 
 ## Download & Installation
 1. Download Master or Release & Extract the .zip or Open the .zip.
