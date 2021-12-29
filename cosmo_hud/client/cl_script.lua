@@ -159,6 +159,7 @@ Citizen.CreateThread(function()
             isBeltOn = beltStatus,
             oxygen = GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10,
             stamina = GetPlayerSprintTimeRemaining(PlayerId()) * 10,
+            talking = NetworkIsPlayerTalking(PlayerId())
         })
     end
 end)
@@ -189,25 +190,24 @@ Citizen.CreateThread(function()
     SetBigmapActive(false, false)
     
     while true do
-        Wait(0)
+        Citizen.Wait(0)
         BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
         ScaleformMovieMethodAddParamInt(3)
         EndScaleformMovieMethod()
         SetBlipAlpha(GetNorthRadarBlip(), 0)
+        HideHudComponentThisFrame(6)
+        HideHudComponentThisFrame(7)
+        HideHudComponentThisFrame(8)
+        HideHudComponentThisFrame(9)
     end
 end)
 
 -- Microphone
-AddEventHandler("SaltyChat_VoiceRangeChanged", function(voiceRange, index, availableVoiceRanges)
+RegisterNetEvent("cosmo_hud:VoiceRangeChanged")
+AddEventHandler("cosmo_hud:VoiceRangeChanged", function(index)
     SendNUIMessage({
         action = "voice_level", 
         voicelevel = index
-    })
-end)
-
-AddEventHandler("SaltyChat_TalkStateChanged", function(isTalking)
-    SendNUIMessage({
-        talking = isTalking
     })
 end)
 
