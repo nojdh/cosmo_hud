@@ -203,11 +203,10 @@ Citizen.CreateThread(function()
 end)
 
 -- Microphone
-RegisterNetEvent("cosmo_hud:VoiceRangeChanged")
-AddEventHandler("cosmo_hud:VoiceRangeChanged", function(index)
+AddEventHandler('pma-voice:setTalkingMode', function(newTalkingRange) 
     SendNUIMessage({
         action = "voice_level", 
-        voicelevel = index
+        voicelevel = newTalkingRange
     })
 end)
 
