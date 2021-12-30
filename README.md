@@ -21,7 +21,7 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 * Optional:
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
     * [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
-    * [mumble-voip](https://github.com/Xxpromw3mtxX/mumble-voip-fivem)
+    * [pma-voice](https://github.com/AvarianKnight/pma-voice)
 
 ## Download & Installation
 1. Download Master or Release & Extract the .zip or Open the .zip.
@@ -68,8 +68,29 @@ end)
 ## Setup voice indicator w/SaltyChat
 1. Install [SaltyChat](https://github.com/saltminede/saltychat-fivem)
 2. Follow the SaltyChat installation guide
-3. NO MORE EXPORTS! 😎
-4. You're set!
+3. Download the released version compatible with it at [RELEASE](https://github.com/Xxpromw3mtxX/cosmo_hud/releases/tag/1.8)
+4. NO MORE EXPORTS! 😎
+5. You're set!
+
+## Setup voice indicator w/pma-voice
+1. Install [pma-voice](https://github.com/AvarianKnight/pma-voice)
+2. To install `pma-voice` copy the folder into your `resource` folder
+3. Open your `server.cfg` and add these lines:
+```
+ensure pma-voice
+setr voice_useNativeAudio 1
+setr voice_enableUi	0
+setr voice_defaultCycle "Z" 	#You can change this setting how you like.*
+setr voice_enableRadios 1
+setr voice_enablePhones 1
+setr voice_enableSubmix 1
+setr voice_enableRadioAnim 1
+setr voice_defaultRadio "MOUSE_EXTRABTN2" 	#You can change this setting how you like.*
+setr voice_useSendingRangeOnly 1
+```
+* You can find a list of valid kays [in the Cfx docs](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/).
+4. Download the latest cosmo_hud and install it
+5. You're set!
 
 ## Setup stress system w/esx_basicneeds
 1. Install [esx_basicneeds](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_basicneeds)
