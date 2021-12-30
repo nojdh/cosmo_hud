@@ -24,7 +24,7 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
     * [pma-voice](https://github.com/AvarianKnight/pma-voice)
 
 ## Download & Installation
-1. Download Master or Release & Extract the .zip or Open the .zip.
+1. Download [Master](https://github.com/Xxpromw3mtxX/cosmo_hud/archive/refs/heads/main.zip) or [Release](https://github.com/Xxpromw3mtxX/cosmo_hud/releases) & Extract the .zip or Open the .zip.
 2. Edit the config.lua before starting the script.
 3. Add `ensure cosmo_hud` to your server.cfg
 4. To make sure that `cosmo_hud` works with `esx_status`, you have to change the following line in `[esx]/esx_status/client/main.lua`:
