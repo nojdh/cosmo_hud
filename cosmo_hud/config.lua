@@ -3,6 +3,9 @@ Config = {}
 -- TickTime // Time before each execution of the thread
 Config.TickTime = 1000
 
+-- Version Checker // Check hud version
+Config.CheckVersion = true
+
 -- Radar // Set this flag to true if you'd like to show the radar all the time
 Config.ShowRadar = false
 
