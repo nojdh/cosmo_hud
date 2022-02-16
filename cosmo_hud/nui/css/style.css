@@ -10,7 +10,7 @@
 @font-face {
   font-family: "Stilu";
   src: url("../font/stilu.semibold.otf") format("opentype");
-  }
+}
 
 body {
   width: 100%;
@@ -132,12 +132,30 @@ body {
   bottom: -2.15vh;
 }
 
+.outline {
+  position: fixed;
+  bottom: 10vh;
+  left: -1.7vh;
+  width: 29.629vh;
+  text-align: center;
+}
+
+.mapborder {
+  width: 24vh;
+  height: 21.1vh;
+  border: 5px solid #9e9fa0;
+  border-radius: 50%;
+  position: relative;
+  top: 53px;
+  display: inline-block;
+}
+
 #SpeedCircle {
   width: 5vh !important;
   height: 5vh !important;
   position: absolute;
   font-size: 5vh;
-  left: 24.8vh;
+  left: 23.5vh;
   bottom: 5.6vh;
   background: rgba(27, 27, 27, 0.336);
   transform: rotate(-180deg);
@@ -172,7 +190,7 @@ body {
   height: 3vh !important;
   color: white;
   position: absolute;
-  left: 28.0vh;
+  left: 26.7vh;
   bottom: 10.8vh;
   background: rgba(27, 27, 27, 0.336);
 }
