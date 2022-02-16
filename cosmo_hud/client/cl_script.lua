@@ -17,17 +17,17 @@ AddEventHandler("cosmo_hud:onTick", function(status)
     TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
         hunger = status.val / 10000
     end)
-    
+        
     TriggerEvent('esx_status:getStatus', 'thirst', function(status) 
         thirst = status.val / 10000 
     end)
-    
+        
     if Config.ShowStress then
         TriggerEvent('esx_status:getStatus', 'stress', function(status) 
             stress = status.val / 10000 
         end)
     end
-    
+        
     if hunger == 0 or thirst == 0 then
         ForcePedMotionState(playerPed, 1110276645, 0, 0, 0)
     end
@@ -85,6 +85,28 @@ Citizen.CreateThread(function()
         elseif not IsPauseMenuActive() then
             SendNUIMessage({showUi = true})
         end
+        
+        -- Vehicle config while entity inside
+        if IsPedInAnyVehicle(pedID, true) then
+            SetRadarZoom(1000)
+            local veh = GetVehiclePedIsUsing(pedID, false)
+            local speed = math.floor(GetEntitySpeed(veh) * 3.6)
+            
+            SendNUIMessage({
+                speed = speed
+            })
+        end
+
+        -- SpeedO gonfig
+        if Config.ShowSpeedO then
+            if IsPedInAnyVehicle(pedID, false) 
+            and not IsPedInFlyingVehicle(pedID) 
+            and not IsPedInAnySub(pedID) then
+                SendNUIMessage({showSpeedo = true})
+            elseif not IsPedInAnyVehicle(pedID, false) then
+                SendNUIMessage({showSpeedo = false})
+            end
+        end
 
         -- Fuel config
         if Config.ShowFuel then
@@ -108,11 +130,14 @@ Citizen.CreateThread(function()
         if not Config.ShowRadar then
             if IsPedInAnyVehicle(pedID, false) then
                 DisplayRadar(true)
+                SendNUIMessage({showOutlines = true})
             else
                 DisplayRadar(false)
+                SendNUIMessage({showOutlines = false})
             end
         else
             DisplayRadar(true)
+            SendNUIMessage({showOutlines = true})
         end
 
         -- Stress config
@@ -142,9 +167,11 @@ Citizen.CreateThread(function()
     end
 end)
 
+-- Position
+local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
 -- Map stuff
 Citizen.CreateThread(function()
-    local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
+    local minimap = RequestScaleformMovie("minimap")
 
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
@@ -153,7 +180,7 @@ Citizen.CreateThread(function()
     SetMinimapClipType(1)
     SetMinimapComponentPosition('minimap', 'L', 'B', posX, posY, width, height)
     SetMinimapComponentPosition('minimap_mask', 'L', 'B', posX + 0.17, posY + 0.09, 0.072, 0.162)
-    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.025, 0.022, 0.256, 0.337)
+    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.032, -0.035, 0.18, 0.22)
 
     SetMapZoomDataLevel(0, 0.96, 0.9, 0.08, 0.0, 0.0) -- Level 0
     SetMapZoomDataLevel(1, 1.6, 0.9, 0.08, 0.0, 0.0) -- Level 1
@@ -161,7 +188,6 @@ Citizen.CreateThread(function()
     SetMapZoomDataLevel(3, 12.3, 0.9, 0.08, 0.0, 0.0) -- Level 3
     SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0) -- Level 4
 
-    local minimap = RequestScaleformMovie("minimap")
     Wait(5000)
     SetBigmapActive(true, false)
     Wait(0)
