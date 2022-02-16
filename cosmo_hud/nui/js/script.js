@@ -154,7 +154,7 @@ window.addEventListener("message", function (event) {
     $("#OxygenIndicator").fadeOut();
   }
 
-  //Map outlines
+  // Map outlines
   if (data.showOutlines == true) {
     $(".outline").show();
   } else if (data.showOutlines == false) {
@@ -214,6 +214,15 @@ window.addEventListener("message", function (event) {
     HealthIndicator.trail.setAttribute("stroke", "green");
     $("#hp-icon").removeClass("fa-skull");
     $("#hp-icon").addClass("fa-heart");
+  }
+
+  // Change icon if player is in radio
+  if (data.inRadio == true) {
+    $("#VoiceIcon").removeClass("fa-microphone");
+    $("#VoiceIcon").addClass("fa-headset");
+  } else if (data.inRadio == false) {
+    $("#VoiceIcon").removeClass("fa-headset");
+    $("#VoiceIcon").addClass("fa-microphone");
   }
 
   // Flash if thirst is low

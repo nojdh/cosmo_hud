@@ -111,7 +111,15 @@ body {
   font-size: 1.6vh;
   left: 1.4vh;
   bottom: 1.25vh;
-  }
+}
+
+.fa-headset {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.2vh;
+  bottom: 1.15vh;
+}
 
 .fa-gas-pump {
   color: white;

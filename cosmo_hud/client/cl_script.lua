@@ -126,6 +126,13 @@ Citizen.CreateThread(function()
             end
         end
 
+        -- Check if player is in radio
+        if LocalPlayer.state['radioChannel'] > 0 and LocalPlayer.state['radioChannel'] ~= 0 then
+            SendNUIMessage({inRadio = true})
+        elseif LocalPlayer.state['radioChannel'] == 0 then
+            SendNUIMessage({inRadio = false})
+        end
+
         -- Radar config
         if not Config.ShowRadar then
             if IsPedInAnyVehicle(pedID, false) then
