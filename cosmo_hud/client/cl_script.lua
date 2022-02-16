@@ -127,10 +127,12 @@ Citizen.CreateThread(function()
         end
 
         -- Check if player is in radio
-        if LocalPlayer.state['radioChannel'] > 0 and LocalPlayer.state['radioChannel'] ~= 0 then
-            SendNUIMessage({inRadio = true})
-        elseif LocalPlayer.state['radioChannel'] == 0 then
-            SendNUIMessage({inRadio = false})
+        if LocalPlayer.state['radioChannel'] ~= nil then
+            if LocalPlayer.state['radioChannel'] > 0 and LocalPlayer.state['radioChannel'] ~= 0 then
+                SendNUIMessage({inRadio = true})
+            elseif LocalPlayer.state['radioChannel'] == 0 then
+                SendNUIMessage({inRadio = false})
+            end
         end
 
         -- Radar config
