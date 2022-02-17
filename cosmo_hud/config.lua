@@ -9,6 +9,12 @@ Config.CheckVersion = true
 -- Radar // Set this flag to true if you'd like to show the radar all the time
 Config.ShowRadar = false
 
+-- Set this flag to true if you'd like to show the voice indicator
+Config.ShowVoice = true
+
+-- Hides hud while player gameplay camera is not rendering
+Config.HideWhileGameplayCameraIsNotRendering = true
+
 --[[ 
     Stress // Set this flag to true if you'd like to show the stress indicator. 
     This option now unlock a series of functions and a server event.
@@ -45,6 +51,7 @@ Config.ShowServerID = true
 ]]
 
 -- Sound // Set these flags as you wish
+Config.ShowBelt = true -- Set this flag to false if you want to disable seatbelt functionality
 Config.Sounds = true -- Set this flag to false if you'd like to disable sound when using seatbelt.
 Config.LoopSound = false
 Config.Volume = 0.8 -- Set this flag to a volume between 0.0 and 1.0

@@ -1,3 +1,5 @@
+if not Config.ShowBelt then return end
+
 local isUiOpen = false
 local speedBuffer = {}
 local velBuffer = {}
