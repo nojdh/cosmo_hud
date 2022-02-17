@@ -13,7 +13,7 @@ end)
 -- Principal Event
 AddEventHandler('esx_status:onTick', function(data)
 	local playerPed = PlayerPedId()
-print("TICK")
+    
 	for k, v in pairs(data) do
 		if v.name == 'hunger' then
 			hunger = v.percent
