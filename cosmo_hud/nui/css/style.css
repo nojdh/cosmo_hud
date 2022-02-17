@@ -51,23 +51,13 @@ body {
 .fa-heart,
 .fa-shield-alt,
 .fa-hamburger,
+.fa-running,
 .fa-skull {
   color: white;
   position: absolute;
   font-size: 1.6vh;
   left: 1.2vh;
   bottom: 1.2vh;
-}
-
-.fa-o2 {
-  color: white;
-  position: absolute;
-  font-size: 1.6vh;
-  left: 0.79vh;
-  bottom: 0.78vh;
-  width: 26px;
-  height: 26px;
-  content: url("../img/o2.png");
 }
 
 .fa-brain, .fa-headset  {
@@ -146,6 +136,7 @@ body {
   left: -1.7vh;
   width: 29.629vh;
   text-align: center;
+  display: none;
 }
 
 .mapborder {

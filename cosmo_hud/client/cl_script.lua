@@ -1,6 +1,7 @@
 -- Variables
 ESX = nil
 local beltStatus = false
+local hunger, thirst, stress = 0, 0, 0
 
 Citizen.CreateThread(function()
     while ESX == nil do
@@ -10,25 +11,20 @@ Citizen.CreateThread(function()
 end)
 
 -- Principal Event
-RegisterNetEvent("cosmo_hud:onTick")
-AddEventHandler("cosmo_hud:onTick", function(status)
-    local playerPed = PlayerPedId()
-
-    TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
-        hunger = status.val / 10000
-    end)
-        
-    TriggerEvent('esx_status:getStatus', 'thirst', function(status) 
-        thirst = status.val / 10000 
-    end)
-        
-    if Config.ShowStress then
-        TriggerEvent('esx_status:getStatus', 'stress', function(status) 
-            stress = status.val / 10000 
-        end)
-    end
-        
-    if hunger == 0 or thirst == 0 then
+AddEventHandler('esx_status:onTick', function(data)
+	local playerPed = PlayerPedId()
+    
+	for k, v in pairs(data) do
+		if v.name == 'hunger' then
+			hunger = v.percent
+		elseif v.name == 'thirst' then
+			thirst = v.percent
+		elseif v.name == 'stress' then
+			stress = v.percent
+		end
+	end
+	
+	if hunger == 0 or thirst == 0 then
         ForcePedMotionState(playerPed, 1110276645, 0, 0, 0)
     end
 end)
@@ -69,7 +65,7 @@ Citizen.CreateThread(function()
         else
             SendNUIMessage({showHealth = true})
         end
-
+		
         -- Stress config
         if Config.ShowStress then
             if stress > 1 then
@@ -77,24 +73,29 @@ Citizen.CreateThread(function()
             else
                 SendNUIMessage({showStress = false})
             end
+        else
+            SendNUIMessage({showStress = false})
         end
-
-        -- Pause menu checks
-        if IsPauseMenuActive() then
+        
+        -- Belt config
+        if Config.ShowBelt then
+            SendNUIMessage({showBelt = true})
+        else
+            SendNUIMessage({showBelt = false})
+        end
+		
+		-- Voice config
+        if Config.ShowVoice then
+            SendNUIMessage({showVoice = true})
+        else
+            SendNUIMessage({showVoice = false})
+        end
+        
+        -- HUD visibility checks
+        if IsPauseMenuActive() or IsPlayerSwitchInProgress() or (Config.HideWhileGameplayCameraIsNotRendering and not IsGameplayCamRendering()) then
             SendNUIMessage({showUi = false})
         elseif not IsPauseMenuActive() then
             SendNUIMessage({showUi = true})
-        end
-        
-        -- Vehicle config while entity inside
-        if IsPedInAnyVehicle(pedID, true) then
-            SetRadarZoom(1000)
-            local veh = GetVehiclePedIsUsing(pedID, false)
-            local speed = math.floor(GetEntitySpeed(veh) * 3.6)
-            
-            SendNUIMessage({
-                speed = speed
-            })
         end
 
         -- SpeedO gonfig
@@ -160,6 +161,8 @@ Citizen.CreateThread(function()
             end
         end
         
+		SetRadarZoom(1000)
+		
         -- Information sent to JavaScript
         SendNUIMessage({
             action = "update_hud",
@@ -176,12 +179,29 @@ Citizen.CreateThread(function()
     end
 end)
 
+Citizen.CreateThread(function()
+	while true do
+        Citizen.Wait(100)
+		local pedID = PlayerPedId()
+		
+		-- Vehicle config while entity inside
+		if IsPedInAnyVehicle(pedID, true) then
+			local veh = GetVehiclePedIsUsing(pedID, false)
+			local speed = math.floor(GetEntitySpeed(veh) * 3.6)
+			
+			SendNUIMessage({
+				speed = speed
+			})
+		end
+	end
+end)
 -- Position
 local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
 -- Map stuff
 Citizen.CreateThread(function()
     local minimap = RequestScaleformMovie("minimap")
-
+    while not HasScaleformMovieLoaded(minimap) do Wait(100) end
+    
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
     AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
@@ -190,14 +210,14 @@ Citizen.CreateThread(function()
     SetMinimapComponentPosition('minimap', 'L', 'B', posX, posY, width, height)
     SetMinimapComponentPosition('minimap_mask', 'L', 'B', posX + 0.17, posY + 0.09, 0.072, 0.162)
     SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.032, -0.035, 0.18, 0.22)
-
+    ThefeedSpsExtendWidescreenOn()
+	
     SetMapZoomDataLevel(0, 0.96, 0.9, 0.08, 0.0, 0.0) -- Level 0
     SetMapZoomDataLevel(1, 1.6, 0.9, 0.08, 0.0, 0.0) -- Level 1
     SetMapZoomDataLevel(2, 8.6, 0.9, 0.08, 0.0, 0.0) -- Level 2
     SetMapZoomDataLevel(3, 12.3, 0.9, 0.08, 0.0, 0.0) -- Level 3
     SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0) -- Level 4
-
-    Wait(5000)
+	
     SetBigmapActive(true, false)
     Wait(0)
     SetBigmapActive(false, false)

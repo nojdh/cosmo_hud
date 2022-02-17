@@ -216,6 +216,13 @@ window.addEventListener("message", function (event) {
     $("#hp-icon").addClass("fa-heart");
   }
 
+  // Hide voice
+  if (data.showVoice == false) {
+    $("#VoiceIndicator").fadeOut();
+  } else if (data.showVoice == true) {
+    $("#VoiceIndicator").fadeIn();
+  }
+
   // Change icon if player is in radio
   if (data.inRadio == true) {
     $("#VoiceIcon").removeClass("fa-microphone");
@@ -254,7 +261,7 @@ window.addEventListener("message", function (event) {
   // Seatbelt section
   if (data.showBelt == true) {
     $("#BeltCircle").fadeIn();
-  } else if (data.showBelt == true) {
+  } else if (data.showBelt == false) {
     $("#BeltCircle").fadeOut();
   }
 
