@@ -73,6 +73,8 @@ Citizen.CreateThread(function()
             else
                 SendNUIMessage({showStress = false})
             end
+        else
+            SendNUIMessage({showStress = false})
         end
         
         -- Belt config
