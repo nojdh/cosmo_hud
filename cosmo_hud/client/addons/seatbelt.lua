@@ -90,15 +90,6 @@ Citizen.CreateThread(function()
     end
 end)
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(3500)
-        if not SeatbeltON and InVehicle and not IsPauseMenuActive() and Config.LoopSound then
-            playSound("seatbelt", Config.Volume)
-        end
-    end
-end)
-
 function playSound(soundFile, soundVolume)
     SendNUIMessage({
         transactionType = 'playSound',
