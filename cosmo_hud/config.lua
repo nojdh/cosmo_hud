@@ -32,7 +32,7 @@ Config.ShowSpeedO = true
     To make this flag work you'll need LegacyFuel. Otherwise it will not work & will compromise
     the entire hud causing it to not work.
 ]]
-Config.ShowFuel = false -- set this to true if you want to show fuel (you need LegacyFuel)
+Config.ShowFuel = true -- set this to true if you want to show fuel (you need LegacyFuel)
 
 -- Stamina // Set this flag to false if you'd like to not show the player stamina indicator.
 Config.ShowStamina = true
@@ -53,7 +53,6 @@ Config.ShowServerID = true
 -- Sound // Set these flags as you wish
 Config.ShowBelt = true -- Set this flag to false if you want to disable seatbelt functionality
 Config.Sounds = true -- Set this flag to false if you'd like to disable sound when using seatbelt.
-Config.LoopSound = false
 Config.Volume = 0.8 -- Set this flag to a volume between 0.0 and 1.0
 
 -- Control // Set this flag to a key that you like. More informations here: docs.fivem.net/docs/game-references/controls
@@ -61,7 +60,3 @@ Config.Control = 305
 
 -- Speed // Set a speed
 Config.Speed = 100.0
-
--- Alarm // Set if the alarm should be based on the speed and at which speed the alarm starts.
-Config.AlarmOnlySpeed = true
-Config.AlarmSpeed = 20
