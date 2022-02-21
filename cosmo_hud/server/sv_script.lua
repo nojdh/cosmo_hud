@@ -12,17 +12,12 @@ if Config.CheckVersion then
 
         if (text ~= nil) then
             if (text ~= curVer) then
-                print '^1-----------------------------------------^0'
-                print '^1        UPDATE AVAILABLE COSMO_HUD       ^0'
-                print '^1          GET IT ON GITHUB NOW           ^0'
-                print '^1-----------------------------------------^0'
+                print("^3[update] ^0There's and update available on GitHub.")
             else
-                print("^2COSMO_HUD is up to date!^0")
+                print("^2[info] ^0You are running the latest version.")
             end
         else
-            print '^1----------------------------------------^0'
-            print '^1      ERROR GETTING ONLINE VERSION      ^0'
-            print '^1----------------------------------------^0'
+            print("^8[error] ^0There was an error while retrieving the online version.")
         end 
     end)
 end
