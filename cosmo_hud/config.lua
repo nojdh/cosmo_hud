@@ -32,7 +32,7 @@ Config.ShowSpeedO = true
     To make this flag work you'll need LegacyFuel. Otherwise it will not work & will compromise
     the entire hud causing it to not work.
 ]]
-Config.ShowFuel = true -- set this to true if you want to show fuel (you need LegacyFuel)
+Config.ShowFuel = false -- set this to true if you want to show fuel (you need LegacyFuel)
 
 -- Stamina // Set this flag to false if you'd like to not show the player stamina indicator.
 Config.ShowStamina = true
