@@ -140,13 +140,6 @@ window.addEventListener("message", function (event) {
     VoiceIndicator.path.setAttribute("stroke", "yellow");
   }
 
-  // Hide health if full
-  if (data.showHealth == false) {
-    $("#HealthIndicator").fadeOut();
-  } else if (data.showHealth == true) {
-    $("#HealthIndicator").fadeIn();
-  }
-
   // Show oxygen if underwater
   if (data.showOxygen == true) {
     $("#OxygenIndicator").fadeIn();
@@ -214,13 +207,6 @@ window.addEventListener("message", function (event) {
     HealthIndicator.trail.setAttribute("stroke", "green");
     $("#hp-icon").removeClass("fa-skull");
     $("#hp-icon").addClass("fa-heart");
-  }
-
-  // Hide voice
-  if (data.showVoice == false) {
-    $("#VoiceIndicator").fadeOut();
-  } else if (data.showVoice == true) {
-    $("#VoiceIndicator").fadeIn();
   }
 
   // Change icon if player is in radio
