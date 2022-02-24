@@ -1,19 +1,19 @@
 Config = {}
 
+-- Resource Name // Don't touch!
+Config.resource = GetCurrentResourceName()
+
 -- TickTime // Time before each execution of the thread
-Config.TickTime = 1000
+Config.ticktime = 1000
 
 -- Version Checker // Check hud version
-Config.CheckVersion = true
+Config.versioncheck = true
 
 -- Radar // Set this flag to true if you'd like to show the radar all the time
-Config.ShowRadar = false
-
--- Set this flag to true if you'd like to show the voice indicator
-Config.ShowVoice = true
+Config.showradar = false
 
 -- Hides hud while player gameplay camera is not rendering
-Config.HideWhileGameplayCameraIsNotRendering = true
+Config.gprendering = true
 
 --[[ 
     Stress // Set this flag to true if you'd like to show the stress indicator. 
@@ -21,42 +21,36 @@ Config.HideWhileGameplayCameraIsNotRendering = true
     So if you haven't setup the stress system in basicneeds turn this off!
     Config.MinStressEffect = Set minimum stress before having the effects.
 ]]
-Config.ShowStress = true
-Config.MinStressEffect = 50
+Config.showstress = true
+Config.minstresseffect = 50
 
 -- SpeedOmeter // Set this flag to false if you'd like to not show information about speed, fuel & seatbelt
-Config.ShowSpeedO = true
+Config.showspeedo = true
 
---[[
-    Fuel // Set this flag to true if you'd like to show the current vehicle fuel.
-    To make this flag work you'll need LegacyFuel. Otherwise it will not work & will compromise
-    the entire hud causing it to not work.
-]]
-Config.ShowFuel = false -- set this to true if you want to show fuel (you need LegacyFuel)
+-- Fuel // Set this flag to true if you'd like to show the current vehicle fuel.
+Config.showfuel = false
 
 -- Stamina // Set this flag to false if you'd like to not show the player stamina indicator.
-Config.ShowStamina = true
+Config.showstamina = true
 
 -- Server ID // Set this flag to false if you'd like to not show the player server ID.
-Config.ShowServerID = true
+Config.serverid = true
 
---[[
-    #####################################################################################
-    #                                                                                   #
-    #                                                                                   #
-    #                              Seatbelt configuration                               #
-    #                                                                                   #
-    #                                                                                   #    
-    #####################################################################################
-]]
-
+-- Seatbelt configuration
 -- Sound // Set these flags as you wish
-Config.ShowBelt = true -- Set this flag to false if you want to disable seatbelt functionality
-Config.Sounds = true -- Set this flag to false if you'd like to disable sound when using seatbelt.
-Config.Volume = 0.8 -- Set this flag to a volume between 0.0 and 1.0
+Config.seatbelt = true -- Set this flag to false if you want to disable seatbelt functionality
+Config.sounds = true -- Set this flag to false if you'd like to disable sound when using seatbelt.
+Config.volume = 0.8 -- Set this flag to a volume between 0.0 and 1.0
 
 -- Control // Set this flag to a key that you like. More informations here: docs.fivem.net/docs/game-references/controls
-Config.Control = 305
+Config.beltcontrol = 305
 
 -- Speed // Set a speed
-Config.Speed = 100.0
+Config.speed = 100.0
+
+-- Additional configuration
+-- NPWD // If using the NPWD phone, this option will perform client side restart when using the command
+Config.npwd = true
+
+-- ox_inventory // If using the ox_inventory, this will perform a client side restart when using the command
+Config.ox_inventory = true
