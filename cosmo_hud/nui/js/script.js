@@ -197,6 +197,13 @@ window.addEventListener("message", function (event) {
     }
   }
 
+  // Hide health if full
+  if (data.health == false) {
+    $("#HealthIndicator").fadeOut();
+  } else if (data.health == true) {
+    $("#HealthIndicator").fadeIn();
+  }
+
   // Change color and icon if HP is 0 (dead)
   if (data.hp < 0) {
     HealthIndicator.animate(0);
