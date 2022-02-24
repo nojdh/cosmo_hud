@@ -57,7 +57,7 @@ to
 ### License
 cosmo_hud - Simple status HUD for FiveM and ESX inspired by NoPixel 3.0
 
-Copyright (C) 2011-2021 lilfraae/Xxprom3mtxX
+Copyright (C) 2011-2022 lilfraae/Xxprom3mtxX
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 
