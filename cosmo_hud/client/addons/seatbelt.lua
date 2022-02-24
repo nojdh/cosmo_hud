@@ -1,4 +1,4 @@
-if not Config.seatbelt then return end
+if not shared.seatbelt then return end
 
 local isUiOpen = false
 local speedBuffer = {}
@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
             speedBuffer[2] = speedBuffer[1]
             speedBuffer[1] = GetEntitySpeed(car)
 
-            if not SeatbeltON and speedBuffer[2] ~= nil and GetEntitySpeedVector(car, true).y > 1.0 and speedBuffer[1] > (Config.speed / 3.6) and (speedBuffer[2] - speedBuffer[1]) > (speedBuffer[1] * 0.255) then
+            if not SeatbeltON and speedBuffer[2] ~= nil and GetEntitySpeedVector(car, true).y > 1.0 and speedBuffer[1] > (shared.speed / 3.6) and (speedBuffer[2] - speedBuffer[1]) > (speedBuffer[1] * 0.255) then
                 local co = GetEntityCoords(ped)
                 local fw = Fwv(ped)
 
@@ -56,22 +56,22 @@ Citizen.CreateThread(function()
             velBuffer[2] = velBuffer[1]
             velBuffer[1] = GetEntityVelocity(car)
 
-            if IsControlJustReleased(0, Config.beltcontrol) and GetLastInputMethod(0) then
+            if IsControlJustReleased(0, shared.beltcontrol) and GetLastInputMethod(0) then
                 SeatbeltON = not SeatbeltON
                 if SeatbeltON then
                     TriggerEvent("cosmo_hud:isSeatbeltOn", SeatbeltON) 
 
                     Citizen.Wait(1)
 
-                    if Config.sounds then
-                        playSound("buckle", Config.volume)
+                    if shared.sounds then
+                        playSound("buckle", shared.volume)
                     end
 
                     isUiOpen = true
                 else
                     TriggerEvent("cosmo_hud:isSeatbeltOn", SeatbeltON) 
-                    if Config.sounds then
-                        playSound("unbuckle", Config.volume)
+                    if shared.sounds then
+                        playSound("unbuckle", shared.volume)
                     end
 
                     isUiOpen = true
