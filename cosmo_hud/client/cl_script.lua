@@ -32,11 +32,11 @@ end)
 -- Principal Loop
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(Config.TickTime)
+        Citizen.Wait(Config.ticktime)
         local pedID = PlayerPedId()
 
         -- Player ID
-        if Config.ShowServerID then
+        if Config.serverid then
             SendNUIMessage({
                 pid = true,
                 playerid = GetPlayerServerId(PlayerId()),
@@ -53,21 +53,14 @@ Citizen.CreateThread(function()
         end
 
         -- Ped stamina while sprinting
-        if Config.ShowStamina then
+        if Config.showstamina then
             SendNUIMessage({showStamina = true})
         else
             SendNUIMessage({showStamina = false})
         end
-        
-        -- Entity health
-        if ((GetEntityHealth(pedID) - 100) >= 100) then
-            SendNUIMessage({showHealth = false})
-        else
-            SendNUIMessage({showHealth = true})
-        end
 		
         -- Stress config
-        if Config.ShowStress then
+        if Config.showstress then
             if stress > 1 then
                 SendNUIMessage({showStress = true})
             else
@@ -78,28 +71,21 @@ Citizen.CreateThread(function()
         end
         
         -- Belt config
-        if Config.ShowBelt then
+        if Config.seatbelt then
             SendNUIMessage({showBelt = true})
         else
             SendNUIMessage({showBelt = false})
         end
-		
-		-- Voice config
-        if Config.ShowVoice then
-            SendNUIMessage({showVoice = true})
-        else
-            SendNUIMessage({showVoice = false})
-        end
         
         -- HUD visibility checks
-        if IsPauseMenuActive() or IsPlayerSwitchInProgress() or (Config.HideWhileGameplayCameraIsNotRendering and not IsGameplayCamRendering()) then
+        if IsPauseMenuActive() or IsPlayerSwitchInProgress() or (Config.gprendering and not IsGameplayCamRendering()) then
             SendNUIMessage({showUi = false})
         elseif not IsPauseMenuActive() then
             SendNUIMessage({showUi = true})
         end
 
         -- SpeedO gonfig
-        if Config.ShowSpeedO then
+        if Config.showspeedo then
             if IsPedInAnyVehicle(pedID, false) 
             and not IsPedInFlyingVehicle(pedID) 
             and not IsPedInAnySub(pedID) then
@@ -111,21 +97,19 @@ Citizen.CreateThread(function()
         end
 
         -- Fuel config
-        if Config.ShowFuel then
+        if Config.showfuel then
             SendNUIMessage({showFuel = true})
-        else
-            SendNUIMessage({showFuel = false})
-        end
 
-        if Config.ShowFuel then
             if IsPedInAnyVehicle(pedID, true) then
                 local veh = GetVehiclePedIsUsing(pedID, false)
-                local fuellevel = exports["LegacyFuel"]:GetFuel(veh)
+                local fuellevel = GetVehicleFuelLevel(veh)
                 SendNUIMessage({
                     action = "update_fuel",
                     fuel = fuellevel
                 })
             end
+        else
+            SendNUIMessage({showFuel = false})
         end
 
         -- Check if player is in radio
@@ -138,7 +122,7 @@ Citizen.CreateThread(function()
         end
 
         -- Radar config
-        if not Config.ShowRadar then
+        if not Config.showradar then
             if IsPedInAnyVehicle(pedID, false) then
                 DisplayRadar(true)
                 SendNUIMessage({showOutlines = true})
@@ -152,8 +136,8 @@ Citizen.CreateThread(function()
         end
 
         -- Stress config
-        if Config.ShowStress then
-            if math.floor(stress) >= Config.MinStressEffect then
+        if Config.showstress then
+            if math.floor(stress) >= Config.minstresseffect then
                 Citizen.Wait(10000)
                 forRepeat()
             elseif math.floor(stress) == 100 then
@@ -251,12 +235,12 @@ AddEventHandler("cosmo_hud:isSeatbeltOn", function(isOn)
     })
 end)
 
-if Config.ShowStress then
+if Config.showstress then
     -- Stress function that makes you close your eyes when stress is too high
     function forRepeat()
         Citizen.Wait(750)
         DoScreenFadeOut(200)
-        Citizen.Wait(Config.TickTime)
+        Citizen.Wait(Config.ticktime)
         DoScreenFadeIn(200)
     end
 
@@ -266,3 +250,14 @@ if Config.ShowStress then
         stress = newStress
     end)
 end
+
+--Refresh ui client
+RegisterCommand("ui:restart", function()
+    ExecuteCommand("restart cosmo_hud")
+    if Config.npwd then
+        ExecuteCommand("phone:restart")
+    end
+    if Config.ox_inventory then
+        ExecuteCommand("restart ox_inventory")
+    end
+end, false)
