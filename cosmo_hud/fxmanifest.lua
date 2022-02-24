@@ -19,15 +19,15 @@ files {
 }
 
 client_scripts {
-    'client/cl_script.lua',
+    'client/client.lua',
     'client/addons/seatbelt.lua',
     'client/addons/stress.lua',
 }
 
 server_scripts {
-    'server/sv_script.lua'
+    'server/server.lua'
 }
 
 shared_scripts {
-    'config.lua'
+    'init.lua'
 }
