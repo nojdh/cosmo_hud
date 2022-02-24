@@ -18,10 +18,9 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 * Required:
     * [esx_status](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_status)
     * [esx_basicneeds](https://github.com/esx-framework/esx-legacy/tree/main/%5Besx_addons%5D/esx_basicneeds)
+    * [pma-voice](https://github.com/AvarianKnight/pma-voice)
 * Optional:
     * [rp-radio](https://github.com/FrazzIe/rp-radio)
-    * [LegacyFuel](https://github.com/InZidiuZ/LegacyFuel)
-    * [pma-voice](https://github.com/AvarianKnight/pma-voice)
 
 ## Download & Installation
 1. Download [Master](https://github.com/Xxpromw3mtxX/cosmo_hud/archive/refs/heads/main.zip) or [Release](https://github.com/Xxpromw3mtxX/cosmo_hud/releases) & Extract the .zip or Open the .zip.
