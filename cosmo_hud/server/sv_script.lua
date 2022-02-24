@@ -5,25 +5,28 @@ TriggerEvent('esx:getSharedObject', function(obj)
 end)
 
 -- Version Checker
-if Config.CheckVersion then
-    PerformHttpRequest("https://raw.githubusercontent.com/xxpromw3mtxx/cosmo_hud/main/.version", function(err, text, headers)
-        Citizen.Wait(2000)
-        local curVer = GetResourceMetadata(GetCurrentResourceName(), "version")
+if Config.versioncheck then
+    SetTimeout(2000, function()
+        PerformHttpRequest("https://api.github.com/repos/xxpromw3mtxx/cosmo_hud/releases/latest", function(status, response)
+            if status ~= 200 then return end
 
-        if (text ~= nil) then
-            if (text ~= curVer) then
-                print("^3[update] ^0There's and update available on GitHub.")
-            else
-                print("^2[info] ^0You are running the latest version.")
-            end
-        else
-            print("^8[error] ^0There was an error while retrieving the online version.")
-        end 
+            response = json.decode(response)
+            if response.prerelease then return end
+            
+            local currentVersion = GetResourceMetadata(Config.resource, 'version', 0):match('%d%.%d+%.%d+')
+            if not currentVersion then return end
+
+            local latestVersion = response.tag_name:match('%d%.%d+%.%d+')
+
+            if currentVersion >= latestVersion then return end
+
+            print(('^3An update is available for %s (current version: %s)\r\n%s^0'):format(Config.resource, currentVersion, response.html_url))
+        end, 'GET')
     end)
 end
 
 -- Stress related option
-if Config.ShowStress then
+if Config.showstress then
     RegisterServerEvent('cosmo_hud:gainStress')
     AddEventHandler('cosmo_hud:gainStress', function(StressAmount)
         local xPlayer = ESX.GetPlayerFromId(source)
