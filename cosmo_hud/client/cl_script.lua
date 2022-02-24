@@ -257,7 +257,4 @@ RegisterCommand("ui:restart", function()
     if Config.npwd then
         ExecuteCommand("phone:restart")
     end
-    if Config.ox_inventory then
-        ExecuteCommand("restart ox_inventory")
-    end
 end, false)

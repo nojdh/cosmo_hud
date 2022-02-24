@@ -51,6 +51,3 @@ Config.speed = 100.0
 -- Additional configuration
 -- NPWD // If using the NPWD phone, this option will perform client side restart when using the command
 Config.npwd = true
-
--- ox_inventory // If using the ox_inventory, this will perform a client side restart when using the command
-Config.ox_inventory = true
