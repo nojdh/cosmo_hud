@@ -2,12 +2,19 @@
 ESX = nil
 local beltStatus = false
 local hunger, thirst, stress = 0, 0, 0
+local minimap
 
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
         Citizen.Wait(100)
     end
+end)
+
+AddEventHandler('onResourceStart', function(resourceName)
+    if (shared.resource ~= resourceName) then return end
+    minimap = RequestScaleformMovie("minimap")
+    swapMinimap()
 end)
 
 -- Principal Event
@@ -97,16 +104,12 @@ Citizen.CreateThread(function()
             SendNUIMessage({showUi = true})
         end
 
-        -- SpeedO gonfig
-        if shared.showspeedo then
-            if IsPedInAnyVehicle(pedID, false) 
-            and not IsPedInFlyingVehicle(pedID) 
-            and not IsPedInAnySub(pedID) then
-                SetRadarZoom(1100)
-                SendNUIMessage({showSpeedo = true})
-            elseif not IsPedInAnyVehicle(pedID, false) then
-                SendNUIMessage({showSpeedo = false})
-            end
+        -- SpeedO Config
+        if IsPedInAnyVehicle(pedID, false) and not IsPedInFlyingVehicle(pedID) and not IsPedInAnySub(pedID) then
+            SetRadarZoom(1100)
+            SendNUIMessage({showSpeedo = true})
+        elseif not IsPedInAnyVehicle(pedID, false) then
+            SendNUIMessage({showSpeedo = false})
         end
 
         -- Fuel config
@@ -139,6 +142,14 @@ Citizen.CreateThread(function()
             if IsPedInAnyVehicle(pedID, false) then
                 DisplayRadar(true)
                 SendNUIMessage({showOutlines = true})
+                BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
+                ScaleformMovieMethodAddParamInt(3)
+                EndScaleformMovieMethod()
+                SetBlipAlpha(GetNorthRadarBlip(), 0)
+                HideHudComponentThisFrame(6)
+                HideHudComponentThisFrame(7)
+                HideHudComponentThisFrame(8)
+                HideHudComponentThisFrame(9)
             else
                 DisplayRadar(false)
                 SendNUIMessage({showOutlines = false})
@@ -175,6 +186,7 @@ Citizen.CreateThread(function()
     end
 end)
 
+-- SpeedO configs
 Citizen.CreateThread(function()
 	while true do
         Citizen.Wait(100)
@@ -191,15 +203,17 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
--- Position
-local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
--- Map stuff
-Citizen.CreateThread(function()
-    local minimap = RequestScaleformMovie("minimap")
+
+-- Minimap swap
+function swapMinimap()
+    local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
+
     while not HasScaleformMovieLoaded(minimap) do Wait(100) end
     
     RequestStreamedTextureDict("circlemap", false)
+
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
+
     AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
     
     SetMinimapClipType(1)
@@ -215,21 +229,9 @@ Citizen.CreateThread(function()
     SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0)
 	
     SetBigmapActive(true, false)
-    Wait(0)
+    Citizen.Wait(0)
     SetBigmapActive(false, false)
-    
-    while true do
-        Citizen.Wait(0)
-        BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
-        ScaleformMovieMethodAddParamInt(3)
-        EndScaleformMovieMethod()
-        SetBlipAlpha(GetNorthRadarBlip(), 0)
-        HideHudComponentThisFrame(6)
-        HideHudComponentThisFrame(7)
-        HideHudComponentThisFrame(8)
-        HideHudComponentThisFrame(9)
-    end
-end)
+end
 
 -- Microphone
 AddEventHandler('pma-voice:setTalkingMode', function(newTalkingRange)
@@ -252,11 +254,9 @@ if shared.showstress then
     -- Stress function that makes you close your eyes when stress is too high
     function forRepeat()
         Citizen.Wait(750)
-        --DoScreenFadeOut(200)
-        TriggerScreenblurFadeOut(200)
+        DoScreenFadeOut(200)
         Citizen.Wait(shared.ticktime)
-        --DoScreenFadeIn(200)
-        TriggerScreenblurFadeIn(200)
+        DoScreenFadeIn(200)
     end
 
     -- Updated stress from server
@@ -266,7 +266,7 @@ if shared.showstress then
     end)
 end
 
---Refresh ui client
+-- Refresh ui client
 RegisterCommand("ui:restart", function()
     ExecuteCommand("restart cosmo_hud")
     if shared.npwd then
