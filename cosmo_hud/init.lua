@@ -7,7 +7,6 @@ shared = {
     showhealth = false,
     showstress = true,
     minstresseffect = 50,
-    showspeedo = true,
     showfuel = false,
     showstamina = true,
     serverid = true,
