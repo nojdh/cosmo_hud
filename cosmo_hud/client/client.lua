@@ -1,19 +1,14 @@
--- Variables
 ESX = nil
 local beltStatus = false
 local hunger, thirst, stress = 0, 0, 0
-local minimap
+local minimap minimap = RequestScaleformMovie("minimap")
 
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
         Citizen.Wait(100)
     end
-end)
 
-AddEventHandler('onResourceStart', function(resourceName)
-    if (shared.resource ~= resourceName) then return end
-    minimap = RequestScaleformMovie("minimap")
     swapMinimap()
 end)
 
@@ -209,11 +204,8 @@ function swapMinimap()
     local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
 
     while not HasScaleformMovieLoaded(minimap) do Wait(100) end
-    
     RequestStreamedTextureDict("circlemap", false)
-
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
-
     AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
     
     SetMinimapClipType(1)
@@ -268,7 +260,6 @@ end
 
 -- Refresh ui client
 RegisterCommand("ui:restart", function()
-    ExecuteCommand("restart cosmo_hud")
     if shared.npwd then
         ExecuteCommand("phone:restart")
     end
