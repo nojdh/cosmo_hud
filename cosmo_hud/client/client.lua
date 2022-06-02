@@ -1,14 +1,14 @@
 ESX = nil
 local beltStatus = false
 local hunger, thirst, stress = 0, 0, 0
-local minimap minimap = RequestScaleformMovie("minimap")
+local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
+local minimap = RequestScaleformMovie("minimap")
 
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
         Citizen.Wait(100)
     end
-
     swapMinimap()
 end)
 
@@ -137,14 +137,17 @@ Citizen.CreateThread(function()
             if IsPedInAnyVehicle(pedID, false) then
                 DisplayRadar(true)
                 SendNUIMessage({showOutlines = true})
-                BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
-                ScaleformMovieMethodAddParamInt(3)
-                EndScaleformMovieMethod()
-                SetBlipAlpha(GetNorthRadarBlip(), 0)
-                HideHudComponentThisFrame(6)
-                HideHudComponentThisFrame(7)
-                HideHudComponentThisFrame(8)
-                HideHudComponentThisFrame(9)
+                while true do
+                    Citizen.Wait(0)
+                    BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
+                    ScaleformMovieMethodAddParamInt(3)
+                    EndScaleformMovieMethod()
+                    SetBlipAlpha(GetNorthRadarBlip(), 0)
+                    HideHudComponentThisFrame(6)
+                    HideHudComponentThisFrame(7)
+                    HideHudComponentThisFrame(8)
+                    HideHudComponentThisFrame(9)
+                end
             else
                 DisplayRadar(false)
                 SendNUIMessage({showOutlines = false})
@@ -201,8 +204,6 @@ end)
 
 -- Minimap swap
 function swapMinimap()
-    local posX, posY, width, height = -0.015, -0.015, 0.16, 0.25
-
     while not HasScaleformMovieLoaded(minimap) do Wait(100) end
     RequestStreamedTextureDict("circlemap", false)
     while not HasStreamedTextureDictLoaded("circlemap") do Wait(100) end
@@ -211,7 +212,7 @@ function swapMinimap()
     SetMinimapClipType(1)
     SetMinimapComponentPosition('minimap', 'L', 'B', posX, posY, width, height)
     SetMinimapComponentPosition('minimap_mask', 'L', 'B', posX + 0.17, posY + 0.09, 0.072, 0.162)
-    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.032, -0.035, 0.18, 0.22)
+    SetMinimapComponentPosition('minimap_blur', 'L', 'B', -0.025, 0.022, 0.256, 0.337)
     ThefeedSpsExtendWidescreenOn()
 	
     SetMapZoomDataLevel(0, 0.96, 0.9, 0.08, 0.0, 0.0)
@@ -220,6 +221,7 @@ function swapMinimap()
     SetMapZoomDataLevel(3, 12.3, 0.9, 0.08, 0.0, 0.0)
     SetMapZoomDataLevel(4, 22.3, 0.9, 0.08, 0.0, 0.0)
 	
+    Citizen.Wait(5000)
     SetBigmapActive(true, false)
     Citizen.Wait(0)
     SetBigmapActive(false, false)
