@@ -11,7 +11,7 @@ shared = {
     showstamina = true,
     serverid = true,
 
-    --Additional Configs
+    -- [[Additional Configs]]
 
     -- Seatbelt
     seatbelt = true,

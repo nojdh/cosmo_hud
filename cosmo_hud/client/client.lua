@@ -259,8 +259,8 @@ if shared.showstress then
 end
 
 -- Refresh ui client
-RegisterCommand("ui:restart", function()
-    if shared.npwd then
+if shared.npwd then
+    RegisterCommand("ui:restart", function()
         ExecuteCommand("phone:restart")
-    end
-end, false)
+    end, false)
+end
