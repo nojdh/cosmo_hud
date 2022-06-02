@@ -137,7 +137,7 @@ Citizen.CreateThread(function()
             if IsPedInAnyVehicle(pedID, false) then
                 DisplayRadar(true)
                 SendNUIMessage({showOutlines = true})
-                while true do
+                while IsPedInAnyVehicle(pedID, false) do
                     Citizen.Wait(0)
                     BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
                     ScaleformMovieMethodAddParamInt(3)
