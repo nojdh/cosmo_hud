@@ -19,7 +19,4 @@ shared = {
     volume = 0.8,
     beltcontrol = 305,
     speed = 100.0,
-
-    -- NPWD
-    npwd = true
 }
