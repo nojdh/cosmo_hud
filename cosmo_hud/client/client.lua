@@ -259,10 +259,3 @@ if shared.showstress then
         stress = newStress
     end)
 end
-
--- Refresh ui client
-if shared.npwd then
-    RegisterCommand("ui:restart", function()
-        ExecuteCommand("phone:restart")
-    end, false)
-end
