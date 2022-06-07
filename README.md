@@ -24,24 +24,12 @@ Simple status HUD for FiveM and ESX inspired by NoPixel 3.0 - Remake by lilfraae
 
 ## Download & Installation
 1. Download [Master](https://github.com/Xxpromw3mtxX/cosmo_hud/archive/refs/heads/main.zip) or [Release](https://github.com/Xxpromw3mtxX/cosmo_hud/releases) & Extract the .zip or Open the .zip.
-2. Edit the config.lua before starting the script.
+2. Edit the `init.lua` before starting the script.
 3. Add `ensure cosmo_hud` to your server.cfg
-4. To make sure that `cosmo_hud` works with `esx_status`, you have to change the following line in `[esx]/esx_status/client/main.lua`:
-```
-92          TriggerEvent('esx_status:onTick', data)
-
-to
-
-92          --TriggerEvent('esx_status:onTick', data)
-93          TriggerEvent('cosmo_hud:onTick', data)
-```
-5. Set `Config.Display` to false in `[esx]/esx_status/config.lua`
-6. Set `Config.Display` to false in `[esx]/esx_basicneeds/config.lua`
-7. You're set!
-8. **Do not change the name or it will not work.**
-
-## Known Bugs/Issues
-* Solved for now
+4. Set `Config.Display` to false in `[esx]/esx_status/config.lua`
+5. Set `Config.Display` to false in `[esx]/esx_basicneeds/config.lua`
+6. You're set!
+7. **Do not change the name or it will not work.**
 
 ## Credits/Original Code
 * [nojdh](https://github.com/nojdh)
