@@ -52,14 +52,28 @@ to
 * [PostalMap](https://github.com/ocrp/postal_map)
 * [Loading-Bar](https://loading.io/progress/)
 
-## Legal
-### License
-cosmo_hud - Simple status HUD for FiveM and ESX inspired by NoPixel 3.0
+<br>
 
-Copyright (C) 2011-2022 lilfraae/Xxprom3mtxX
+<table><tr><td><h3 align='center'>Legal Notices</h2></tr></td>
+<tr><td>
+cosmo_hud for ESX Legacy  
 
-This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
+Copyright © 2022  [lilfraae](https://github.com/Xxpromw3mtxX)
 
-This program Is distributed In the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty Of MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License For more details.
 
-You should have received a copy Of the GNU General Public License along with this program. If Not, see http://www.gnu.org/licenses/.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.  
+
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.  
+
+
+You should have received a copy of the GNU General Public License
+along with this program.  
+If not, see <https://www.gnu.org/licenses/>
+</td></tr></table>
