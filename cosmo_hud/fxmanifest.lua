@@ -1,19 +1,33 @@
 fx_version 'cerulean'
-name 'cosmo_hud'
-description 'cosmo_hud for fivem, uses library from loading.io'
-ui_page 'html/ui.html'
-author 'CosmoKramer'
 game 'gta5'
 
+name 'cosmo_hud'
+description 'Clean & Simple hud for FiveM inspired by NoPixel 3.0'
+author 'lilfraae'
+version "1.2.15"
+
+ui_page 'nui/ui.html'
+
 files {
-    'html/ui.html',
-    'html/script.js',
-    'html/style.css',
-    'html/loading-bar.js',
+    'nui/css/*',
+    'nui/font/*',
+    'nui/img/*',
+    'nui/sounds/*',
+    'nui/js/*',
+    'nui/ui.html',
+    'stream/*'
 }
 
-
 client_scripts {
-    'client.lua',
-    'config.lua'
+    'client/client.lua',
+    'client/addons/seatbelt.lua',
+    'client/addons/stress.lua',
+}
+
+server_scripts {
+    'server/server.lua'
+}
+
+shared_scripts {
+    'init.lua'
 }

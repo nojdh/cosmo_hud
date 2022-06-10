@@ -1,3 +1,17 @@
+/*@font-face {
+  font-family: 'Kumbh Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/kumbhsans/v5/c4mm1n92AsfhuCq6tVsagjt47KWfXA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}*/
+
+@font-face {
+  font-family: "Stilu";
+  src: url("../font/stilu.semibold.otf") format("opentype");
+}
+
 body {
   width: 100%;
   overflow: hidden;
@@ -25,9 +39,19 @@ body {
   background: rgb(49, 49, 49);
 }
 
+.PlayerIDStyle {
+  position: relative;
+  width: 4vh !important;
+  height: 4vh !important;
+  float: left;
+  margin: 0.3vh;
+  border-radius: 50%;
+}
+
 .fa-heart,
 .fa-shield-alt,
 .fa-hamburger,
+.fa-running,
 .fa-skull {
   color: white;
   position: absolute;
@@ -48,8 +72,19 @@ body {
   color: white;
   position: absolute;
   font-size: 1.6vh;
-  left: 1vh;
+  left: 0.9vh;
   bottom: 1.3vh;
+}
+
+.fa-belt {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 0.69vh;
+  bottom: 0.8vh;
+  width: 18px;
+  height: 18px;
+  content: url("../img/belt.png");
 }
 
 .fa-tint {
@@ -66,17 +101,41 @@ body {
   font-size: 1.6vh;
   left: 1.4vh;
   bottom: 1.25vh;
-  }
+}
 
+.fa-headset {
+  color: white;
+  position: absolute;
+  font-size: 1.6vh;
+  left: 1.2vh;
+  bottom: 1.15vh;
+}
 
+.fa-gas-pump {
+  color: white;
+  font-size: 1vh;
+  position: inherit;
+  left: 1vh;
+  bottom: 1vh;
+  transform: rotate(-180deg);
+}
 
+.id {
+  color: white;
+  position: absolute;
+  font-family: 'Stilu';
+  text-shadow: 0px 0px 2px black;
+  font-size: 2.5vh;
+  left: 1.02vh;
+  bottom: -2.15vh;
+}
 
 #SpeedCircle {
   width: 5vh !important;
   height: 5vh !important;
   position: absolute;
   font-size: 5vh;
-  left: 22.8vh;
+  left: 24.8vh;
   bottom: 5.6vh;
   background: rgba(27, 27, 27, 0.336);
   transform: rotate(-180deg);
@@ -94,23 +153,26 @@ body {
   text-shadow: 0.2vh 0.2vh 0vh rgb(22, 22, 22);
   transform: rotate(-180deg);
 }
+
 #FuelCircle {
   width: 3vh !important;
   height: 3vh !important;
+  color: white;
   position: absolute;
-  left: 20.4vh;
+  left: 21.0vh;
   bottom: 4.2vh;
   background: rgba(27, 27, 27, 0.336);
   transform: rotate(-180deg);
 }
 
-.fa-gas-pump {
+#BeltCircle {
+  width: 3vh !important;
+  height: 3vh !important;
   color: white;
-  font-size: 1vh;
-  position: inherit;
-  left: 1vh;
-  bottom: 1vh;
-  transform: rotate(-180deg);
+  position: absolute;
+  left: 26.7vh;
+  bottom: 10.8vh;
+  background: rgba(27, 27, 27, 0.336);
 }
 
 .flash {
@@ -127,4 +189,20 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.pulse {
+  animation: pulse 1s;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 #BF360C;
+	}
+	50% {
+		box-shadow: 0 0 0 5px #bf360cb9;
+	}
+	100% {
+		box-shadow: 0 0 0 0 #bf360c85;
+	}
 }
